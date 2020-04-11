@@ -6,3 +6,26 @@ app_name = '[Center_App]'
 urlpatterns = [
 
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
