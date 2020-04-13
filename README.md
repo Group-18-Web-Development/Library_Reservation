@@ -28,4 +28,6 @@
 3.	添加邮件提醒功能
 
 Django 3.0.5  
-数据库 sqlite
+数据库 sqlite 
+
+lzh——test
