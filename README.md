@@ -29,3 +29,5 @@
 
 Django 3.0.5  
 数据库 sqlite
+
+CHS提交测试
