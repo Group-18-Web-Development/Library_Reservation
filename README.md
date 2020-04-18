@@ -29,18 +29,3 @@
 
 Django 3.0.5  
 数据库 sqlite 
-
-
-## 测试提交
-lrj  
-lzh——test  
-顾晓然  
-CHS提交测试  
-Aray  
-fjn test
-wjh test1
-wjh test2
-fjn test  
-wjh test  
-ykz test
-sourcetree test
