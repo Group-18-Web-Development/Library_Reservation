@@ -6,7 +6,7 @@ from Account_App.models import User
 
 
 def test(request):
-    return HttpResponse("创建成功!!!")
+    return HttpResponse("创建成功!!!!!!")
 
 
 def user_login(request):
