@@ -52,10 +52,9 @@
                                                         data-toggle="dropdown" role="button" aria-haspopup="true"
                                                         aria-expanded="false">预约<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="hvr-bounce-to-bottom"
-                                                       href="{% url 'book:books' %}">座位预约</a></li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
-                                                </li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a></li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a></li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>

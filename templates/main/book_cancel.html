@@ -12,6 +12,7 @@
 
 {% endblock %}
 
+
 {% block header %}
     <div class="banner">
         <div class="header">
@@ -24,12 +25,12 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    {#                    <div class="w3-header-top">#}
-                    {#                        <ul>#}
-                    {#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
-                    {#                            </li>#}
-                    {#                        </ul>#}
-                    {#                    </div>#}
+{#                    <div class="w3-header-top">#}
+{#                        <ul>#}
+{#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
                     <div class="w3-header-bottom">
                         <div class="top-nav">
                             <nav class="navbar navbar-default">
@@ -45,19 +46,23 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
-                                        <li><a class="active" href="{% url 'center:homepage' %}">主页</a></li>
-                                        <li class=""><a href="#" class="dropdown-toggle hvr-bounce-to-bottom"
+                                        <li><a href="{% url 'center:homepage' %}">主页</a></li>
+
+                                        <li class=""><a class="active" href="#"
+                                                        class="dropdown-toggle hvr-bounce-to-bottom"
                                                         data-toggle="dropdown" role="button" aria-haspopup="true"
                                                         aria-expanded="false">预约<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a></li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">预约记录</a></li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a>
+                                                </li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
+                                                </li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>
                                         <li><a href={% url 'account:logout' %}>退出</a></li>
-
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
@@ -84,7 +89,7 @@
     <hr>
     <hr>
     <hr>
-    <p class="text-center">主页</p>
+    <p class="text-center">取消预约</p>
     <hr>
     <hr>
     <hr>
