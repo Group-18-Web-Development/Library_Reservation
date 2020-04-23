@@ -1,0 +1,104 @@
+{% extends 'base_main.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+
+{% endblock %}
+
+
+{% block ext_js %}
+    {{ block.super }}
+
+{% endblock %}
+
+
+{% block header %}
+    <div class="banner">
+        <div class="header">
+            <div class="container">
+                <div class="header-left">
+                    <div class="w3layouts-logo">
+                        <h1>
+                            <a href="{% url 'center:homepage' %}"><span>SJTU</span> 图书馆预约 </a>
+                        </h1>
+                    </div>
+                </div>
+                <div class="header-right">
+{#                    <div class="w3-header-top">#}
+{#                        <ul>#}
+{#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+                    <div class="w3-header-bottom">
+                        <div class="top-nav">
+                            <nav class="navbar navbar-default">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                            data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="{% url 'center:homepage' %}">主页</a></li>
+                                        <li class=""><a class="active" href="#"
+                                                        class="dropdown-toggle hvr-bounce-to-bottom"
+                                                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                        aria-expanded="false">预约<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="hvr-bounce-to-bottom"
+                                                       href="{% url 'book:books' %}">座位预约</a></li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href={% url 'center:personal_center' %}>个人中心</a></li>
+                                        <li><a href={% url 'account:logout' %}>退出</a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <p class="text-center">预约记录</p>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+{% endblock %}

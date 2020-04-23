@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all"/>
+{% endblock %}
+
+{% block ext_js %}
+    {{ block.super }}
+
+{% endblock %}
+
+
+{% block footer %}
+    <div class="footer">
+        <div class="container">
+            <div class="agile-footer-grids">
+                <div class="col-md-4 agile-footer-grid">
+                    <h4 class="text-center">Contact Us</h4>
+                    <p class="text-center">电话：xxxxxxxxxxx
+                        <span>
+                            邮箱：xxxxxxxxxxxxxx
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-4 agile-footer-grid">
+                    <h4 class="text-center">Developer</h4>
+                    <p class="text-center">xxx   xxx xxx xxx
+                        <span>
+                            xxx   xxx xxx xxx
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-4 agile-footer-grid">
+                    <h4 class="text-center"> Navigation</h4>
+                    <ul>
+                        <li class="text-center"><a href="{% url 'center:homepage' %}">主页</a></li>
+                        <li class="text-center"><a href="{% url 'book:books' %}">座位预约</a></li>
+                        <li class="text-center"><a href="{% url 'book:book_record' %}">预约记录</a></li>
+                        <li class="text-center"><a href="{% url 'center:personal_center' %}">个人中心</a></li>
+                        <li class="text-center"><a href="{% url 'account:logout' %}">退出</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="toTop" style="display: inline;"><span id="toTopHover"></span>To Top</a>
+{% endblock %}

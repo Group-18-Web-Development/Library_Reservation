@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.urls import reverse
+
 from .forms import LoginForm
 from Account_App.models import User
 
 
 def test(request):
-    return HttpResponse("创建成功!!!!!!")
-
+    # return HttpResponse("创建成功!!!!!!")
+    pass
 
 def user_login(request):
     if request.method == "POST":
@@ -27,3 +29,7 @@ def user_login(request):
     if request.method == "GET":
         login_form = LoginForm()
         return render(request, "Account_App/login.html", {"form": login_form})
+
+
+def logout(request):
+    return redirect(reverse('account:user_login'))

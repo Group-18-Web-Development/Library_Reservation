@@ -3,4 +3,8 @@ from django.http import HttpResponse
 
 
 def homepage(request):
-    return render(request, 'C:/Users/wujiahao/Documents/Library_Reservation/templates/homepage.html')
+    return render(request, 'main/homepage.html')
+
+
+def personal_center(request):
+    return render(request, 'main/personal_center.html')
