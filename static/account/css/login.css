@@ -1,0 +1,15 @@
+.content {
+    margin: 10px 50px 100px;
+
+}
+
+h1 {
+    text-align: center;
+    text-decoration: overline;
+}
+
+div.sticky {
+    top: 0;
+    position: sticky;
+    padding: 0;
+}
