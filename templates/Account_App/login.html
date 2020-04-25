@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Account_App_login</title>
-</head>
-<body>
+
+{% block style %}
+<style>
+.content
+{
+	margin-top: 10px;
+	margin-bottom: 100px;
+	margin-right: 50px;
+	margin-left: 50px;
+
+}
+h1
+{
+    text-align:center;
+    text-decoration:overline;
+}
+
+</style>
+{% endblock %}
 
 {% block title %}
     <h1>Login</h1>
@@ -13,8 +25,9 @@
 
 {% block content %}
 
-<div class="row text-center vertical-middle-sm">
+<div class="content" align="center">
     <p>- Input your username and password -</p>
+    <br>
     <form class="form-horizontal" action="." method="post">{% csrf_token %}
         {{ form.as_p}}
         <input type="submit" value="Login">
@@ -22,5 +35,3 @@
 </div>
 {% endblock %}
 
-</body>
-</html>
