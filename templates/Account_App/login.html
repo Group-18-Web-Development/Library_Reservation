@@ -1,15 +1,26 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Account_App_login</title>
+</head>
+<body>
 
-
-{% block title %}Login{% endblock %}
+{% block title %}
+    <h1>Login</h1>
+{% endblock %}
 
 {% block content %}
 
 <div class="row text-center vertical-middle-sm">
-    <h1>Login</h1>
-    <p>Input your username and password</p>
+    <p>- Input your username and password -</p>
     <form class="form-horizontal" action="." method="post">{% csrf_token %}
         {{ form.as_p}}
         <input type="submit" value="Login">
     </form>
 </div>
 {% endblock %}
+
+</body>
+</html>
