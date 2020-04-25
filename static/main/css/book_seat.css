@@ -1,0 +1,17 @@
+.post, legend
+{
+    text-align: center;
+}
+h1
+{
+    font-weight: bold;
+    margin: 40px;
+}
+label
+{
+    margin: 20px;
+}
+legend:
+{
+    margin-top: 60px;
+}

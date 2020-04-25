@@ -3,13 +3,13 @@
 
 {% block ext_css %}
     {{ block.super }}
-
+<link rel="stylesheet" href="../../static/main/css/book_seat.css">
 {% endblock %}
 
 
 {% block ext_js %}
     {{ block.super }}
-
+<script src="../../static/main/js/book_seat.js"></script>
 {% endblock %}
 
 
@@ -75,29 +75,60 @@
 
 
 {% block content %}
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <p class="text-center">座位预约</p>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
+<!-- Main -->
+<div id="main">
+	<!-- Post -->
+	<div class="post">
+		<h1>座位预约</h1>
+		<form action="#" method="post">
+			<fieldset>
+			<legend>Please choose the floor:</legend>
+				<label for="FirstFloor" class="floor"><input type="checkbox" id="FirstFloor" name="FirstFloor"> 1 </label>
+				<label for="SecondFloor" class="floor"><input type="checkbox" id="SecondFloor" name="SecondFloor"> 2 </label>
+				<label for="ThirdFloor" class="floor"><input type="checkbox" id="ThirdFloor" name="ThirdFloor"> 3 </label>
+				<label for="FourthFloor" class="floor"><input type="checkbox" id="FourthFloor" name="FourthFloor"> 4 </label>
+				<label for="FifthFloor" class="floor"><input type="checkbox" id="FifthFloor" name="FifthFloor"> 5 </label>
+			<legend>Please choose the zone</legend>
+				<label><input type="radio" id="zone" name="zone" value="quiet" aria-required="true" onChange="Selected(this)"> 安静区 </label>
+				<label><input type="radio" id="zone" name="zone" value="noisy" aria-required="true" onChange="Selected(this)"> 非安静区 </label>
+			</br>
+			<div id="quietmore" style="display: none;">
+				<legend>Please choose the study hall</legend>
+					<label for="a" class="study_hall"><input type="checkbox" id="a" name="a"> A </label>
+					<label for="b" class="study_hall"><input type="checkbox" id="b" name="b"> B </label>
+					<label for="c" class="study_hall"><input type="checkbox" id="c" name="c"> C </label>
+				<legend>请选择卓子类型</legend>
+					<label for="OnePerson" class="sortQ"><input type="checkbox" id="OnePerson" name="OnePerson"> 单人 </label>
+					<label for="FourPeopleQ" class="sortQ"><input type="checkbox" id="FourPeopleQ" name="FourPeopleQ"> 四个人 </label>
+					<label for="ManyPeople" class="sortQ"><input type="checkbox" id="ManyPeople" name="ManyPeople"> 多人 </label>
+				<legend>请选择卓子号</legend>
+					<select name="tableQ">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+			</div>
+			<div id=noisymore" style="display: none;">
+				<legend>请选择卓子类型</legend>
+					<label for="TwoPeople" class="sortN"><input type="checkbox" id="TwoPeople" name="TwoPeople"> 两个人 </label>
+					<label for="FourPeopleN" class="sortN"><input type="checkbox" id="FourPeopleN" name="FourPeopleN"> 四个人 </label>
+				<legend>请选择卓子号</legend>
+					<select name="tableN">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+			</div>
+			</br>
+			<p><input type="submit" value="Submit">
+			<input type="reset" value="Reset"></p>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
 {% endblock %}
