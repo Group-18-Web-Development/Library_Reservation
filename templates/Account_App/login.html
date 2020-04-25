@@ -29,14 +29,21 @@
 
 
 {% block content %}
+    <br>
+    <br>
     <h1>Login</h1>
     <div class="content" align="center">
-        <p>- Input your username and password -</p>
         <br>
+        <!-- 之后我去画个透明背景的替换这个图（Ninoric） -->
+        <img border="0" src="/static/image/default_icon.jpg" alt="default_image" width="50" height="50">
+        <br>
+        <br>
+        <p style="color:#C8C8C8">- Please input your username and password below-</p>
         <form class="form-horizontal" action="." method="post">{% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Login">
         </form>
+        <br>
     </div>
 {% endblock %}
 
