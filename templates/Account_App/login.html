@@ -4,11 +4,12 @@
     {{ block.super }}
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/account/css/login.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 {% endblock %}
 
 
-{% block header %}
-    <!-- 导航 -->
+{% block invisible-header %}
+
     <div class="sticky">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand/logo -->
@@ -27,7 +28,6 @@
     </div>
 {% endblock %}
 
-
 {% block content %}
     <br>
     <br>
@@ -41,7 +41,10 @@
         <p style="color:#C8C8C8">- Please input your username and password below-</p>
         <form class="form-horizontal" action="." method="post">{% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Login">
+            <div class="btn-group btn-group-sm">
+    <button type="button" class="btn btn-primary" style="background-color: #203643;border-color: #cccccc" >Login</button>
+    <button type="button" class="btn btn-primary" style="background-color: #203643;border-color: #cccccc" >Register</button>
+  </div>
         </form>
         <br>
     </div>
