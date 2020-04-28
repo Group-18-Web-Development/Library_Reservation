@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 from Account_App.models import User
 
@@ -28,7 +29,7 @@ class Reservation(models.Model):
     account = models.ForeignKey(User, on_delete=models.CASCADE)  # 与用户关联
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)  # 与座位关联
     is_delete = models.BooleanField(default=True)  # 当前预约/预约记录
-    date = models.DateField()  # 预约时间点(年-月-日）
+    date = models.CharField(max_length=20, default=datetime.date.today())  # 预约时间点(年-月-日）
     time_choice = (  # 可选择时间点
         (1, "8:00-11:00"),
         (2, "13:00-17:00"),

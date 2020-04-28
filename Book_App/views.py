@@ -1,23 +1,110 @@
+import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse
+import time
+
+from Book_App.models import Seat, Reservation
 
 
 def book_seat(request):
     # 座位预约
+
+    # 获取时间（假设能预约7天内的座位）
+    days = []
+    today = datetime.date.today()
+    days.append(today)
+    for i in range(6):
+        days.append(today + datetime.timedelta(days=i + 1))
+
+    time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]  # 可选择时间点
+
     if request.method == 'GET':
-        return render(request, 'main/book_seat.html')
-    elif request.method == 'POST':
-        # x1 = request.POST.get('tableQ')
-        zone = request.POST.get('zone')
-        floor_1 = request.POST.get('floor')
-        data = {
-            'hh': 'hahaha',
-            'name': 'Emison',
-            # 'x1': x1,
-            'zone': zone,
-            'floor': floor_1,
+        context = {
+            'days': days,
+            'time_choices': time_choices,
         }
-        return render(request, 'main/book_seat.html', context=data)
+        return render(request, 'main/book_seat.html', context=context)
+
+    elif request.method == 'POST':
+
+        # 日期格式化 2020年5月1日 → 2020-05-01
+        day_not = request.POST.get('day')
+        day = date_transform(day_not)
+        # print(day)
+        # print(type(day))
+
+        time_choice = request.POST.get('time_choice')
+        zone = request.POST.get('zone')
+
+        # 安静区处理
+        if zone == 'quiet':
+
+            seats_q = Seat.objects.filter(is_quiet_area=True)
+
+            area_q = request.POST.get('area_q')
+            has_power_q = request.POST.get('has_power_q')
+            floor_q = request.POST.get('floor_q')
+            table_type_q = request.POST.get('table_type_q')
+
+            if area_q != 'all':
+                seats_q = seats_q.filter(area=area_q)
+
+            if has_power_q == 'yes':
+                seats_q = seats_q.filter(has_power=True)
+            elif has_power_q == 'no':
+                seats_q = seats_q.filter(has_power=False)
+
+            if floor_q == 'F1':
+                seats_q = seats_q.filter(floor=1)
+            elif floor_q == 'F2':
+                seats_q = seats_q.filter(floor=2)
+            elif floor_q == 'F3':
+                seats_q = seats_q.filter(floor=3)
+            elif floor_q == 'F4':
+                seats_q = seats_q.filter(floor=4)
+            elif floor_q == 'F5':
+                seats_q = seats_q.filter(floor=5)
+
+            if table_type_q == '单人桌':
+                seats_q = seats_q.filter(table_type=1)
+            elif table_type_q == '双人桌':
+                seats_q = seats_q.filter(table_type=2)
+            elif table_type_q == '四人桌':
+                seats_q = seats_q.filter(table_type=4)
+
+            reservation_record = Reservation.objects.filter(date=day)
+            if time_choice == "8:00-11:00":
+                reservation_record = reservation_record.filter(time_id=1)
+            elif time_choice == "13:00-17:00":
+                reservation_record = reservation_record.filter(time_id=2)
+            elif time_choice == "18:00-21:00":
+                reservation_record = reservation_record.filter(time_id=3)
+
+            result = []
+            for item in reservation_record:
+                result.append(item.seat_id)
+
+            for i in result:
+                print(i)
+
+            data = {
+                'days': days,
+                'time_choices': time_choices,
+                'seats_q': seats_q,
+                'day': day,
+                'time_choice': time_choice,
+            }
+            return render(request, 'main/book_seat.html', context=data)
+
+        # 非安静区处理
+        elif zone == 'noisy':
+            print('noisy')
+            data = {
+                'days': days,
+                'time_choices': time_choices,
+            }
+            return render(request, 'main/book_seat.html', context=data)
 
 
 def book_record(request):
@@ -28,3 +115,17 @@ def book_record(request):
 def book_cancel(request):
     # 取消预约
     return render(request, 'main/book_cancel.html')
+
+
+# 日期格式化函数 2020年5月1日 → 2020-05-01
+def date_transform(day_f):
+    year = day_f[0:4]
+    if day_f[6] == '月':
+        month = '0' + day_f[5]
+    else:
+        month = day_f[5]
+    if day_f[-3] == '月':
+        day = '0' + day_f[-2]
+    else:
+        day = day_f[-3:-1]
+    return year + '-' + month + '-' + day

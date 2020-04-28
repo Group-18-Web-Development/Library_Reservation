@@ -88,6 +88,21 @@
                 {% csrf_token %}
 
                 <fieldset>
+                    {#    选择日期以及时间段    #}
+                    <legend>请选择日期以及时间段</legend>
+                    <label>
+                        <select name="day">
+                            {% for day in days %}
+                                <option>{{ day }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="time_choice">
+                            {% for time_choice in time_choices %}
+                                <option>{{ time_choice }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+
                     {#    选择区域    #}
                     <legend>请选择 安静区/非安静区</legend>
                     <label><input type="radio" id="zone" name="zone" value="quiet" aria-required="true"
@@ -99,18 +114,18 @@
                         {#    选择floor    #}
                         <legend>安静区-请选择楼层</legend>
                         <label>
-                            <select name="floor">
+                            <select name="floor_q">
                                 <option>all</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>F1</option>
+                                <option>F2</option>
+                                <option>F3</option>
+                                <option>F4</option>
+                                <option>F5</option>
                             </select>
                         </label>
                         <legend>安静区-请选择区域</legend>
                         <label>
-                            <select name="zone">
+                            <select name="area_q">
                                 <option>all</option>
                                 <option>A</option>
                                 <option>B</option>
@@ -119,7 +134,7 @@
                         </label>
                         <legend>安静区-请选择桌子类型</legend>
                         <label>
-                            <select name="table_type">
+                            <select name="table_type_q">
                                 <option>all</option>
                                 <option>单人桌</option>
                                 <option>双人桌</option>
@@ -128,7 +143,7 @@
                         </label>
                         <legend>安静区-是否需要电源插座</legend>
                         <label>
-                            <select name="has_power">
+                            <select name="has_power_q">
                                 <option>all</option>
                                 <option>yes</option>
                                 <option>no</option>
@@ -141,18 +156,18 @@
                         {#    选择floor    #}
                         <legend>非安静区-请选择楼层</legend>
                         <label>
-                            <select name="floor">
+                            <select name="floor_n">
                                 <option>all</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>F1</option>
+                                <option>F2</option>
+                                <option>F3</option>
+                                <option>F4</option>
+                                <option>F5</option>
                             </select>
                         </label>
                         <legend>非安静区-请选择桌子类型</legend>
                         <label>
-                            <select name="table_type">
+                            <select name="table_type_n">
                                 <option>all</option>
                                 <option>单人桌</option>
                                 <option>双人桌</option>
@@ -166,8 +181,19 @@
         </div>
     </div>
 
-    <span>{{ name }}</span>
-    <span>{{ x1 }}</span>
-    <span>{{ zone }}</span>
-    <span>{{ floor }}</span>
+    <li>
+        {% for seat_q in seats_q %}
+            <br>
+            <span>{{ day }}|</span>
+            <span>{{ time_choice }}|</span>
+            <span>安静区|</span>
+            <span>楼层：{{ seat_q.floor }}|</span>
+            <span>区域：{{ seat_q.area }}|</span>
+            <span>桌子类型{{ seat_q.table_type }}|</span>
+            <span>有无电源：{{ seat_q.has_power }}|</span>
+            <span>位置：{{ seat_q.table_position_quiet }}|</span>
+            <a href="#">预约</a>
+        {% endfor %}
+    </li>
+
 {% endblock %}

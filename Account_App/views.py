@@ -11,34 +11,41 @@ import random
 
 
 def add_data(request):
-
-    # 添加用户数据
-    for i in range(10):
-        user = User()
-        user.username = 'Jason' + str(i)
-        user.password = '00000' + str(i)
-        user.email = '123456@gmail.com'
-        user.save()
+    # # 添加用户数据
+    # for i in range(10):
+    #     user = User()
+    #     user.username = 'Jason' + str(i)
+    #     user.password = '00000' + str(i)
+    #     user.email = '123456@gmail.com'
+    #     user.save()
 
     # 添加安静区座位
-    for i in range(50):
-        seat = Seat()
-        seat.is_quiet_area = True
-        seat.floor = i % 5 + 1
-        seat.area = random.choice(['A', 'B', 'C'])
-        seat.table_type = random.choice([1, 2, 4])
-        seat.has_power = random.choice([True, False])
-        seat.table_position_quiet = seat.area + str(seat.floor * 100) + '-' + str(i)
-        seat.save()
+    # for i in range(50):
+    #     seat = Seat()
+    #     seat.is_quiet_area = True
+    #     seat.floor = i % 5 + 1
+    #     seat.area = random.choice(['A', 'B', 'C'])
+    #     seat.table_type = random.choice([1, 2, 4])
+    #     seat.has_power = random.choice([True, False])
+    #     seat.table_position_quiet = seat.area + str(seat.floor * 100) + '-' + str(i)
+    #     seat.save()
 
     # 添加非安静区座位
-    for i in range(50):
-        seat = Seat()
-        seat.is_quiet_area = False
-        seat.floor = i % 5 + 1
-        seat.table_type = random.choice([1, 2, 4])
-        seat.table_position_noisy = str(seat.floor * 100) + '-' + str(i)
-        seat.save()
+    # for i in range(50):
+    #     seat = Seat()
+    #     seat.is_quiet_area = False
+    #     seat.floor = i % 5 + 1
+    #     seat.table_type = random.choice([1, 2, 4])
+    #     seat.table_position_noisy = str(seat.floor * 100) + '-' + str(i)
+    #     seat.save()
+
+    # 添加预约记录
+    for i in range(9):
+        record = Reservation()
+        record.account_id = i + 1
+        record.seat_id = random.randrange(50) + 1
+        record.time_id = random.choice([1, 2, 3])
+        record.save()
 
     return HttpResponse('用户、座位添加成功')
 
