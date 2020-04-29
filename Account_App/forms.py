@@ -18,3 +18,6 @@ class RegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError("passwords do not match.")
         return cd['password2']
+
+
+

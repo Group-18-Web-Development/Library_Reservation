@@ -8,4 +8,10 @@ class UserProf(models.Model):
     credit = models.PositiveIntegerField(default=5)  # 信誉度
 
     class Meta:
+
         db_table = 'userprof'
+
+
+
+
+
