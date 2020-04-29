@@ -40,12 +40,12 @@ def add_data(request):
     #     seat.save()
 
     # 添加预约记录
-    for i in range(9):
-        record = Reservation()
-        record.account_id = i + 1
-        record.seat_id = random.randrange(50) + 1
-        record.time_id = random.choice([1, 2, 3])
-        record.save()
+    # for i in range(9):
+    #     record = Reservation()
+    #     record.account_id = i + 1
+    #     record.seat_id = random.randrange(50) + 1
+    #     record.time_id = random.choice([1, 2, 3])
+    #     record.save()
 
     return HttpResponse('用户、座位添加成功')
 
