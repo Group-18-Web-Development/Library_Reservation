@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse
 
 from .forms import LoginForm, RegistrationForm
-from Account_App.models import User
+from Account_App.models import UserProf
 from Book_App.models import Reservation, Seat
 
 import random

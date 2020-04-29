@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-from Account_App.models import User
+from Account_App.models import UserProf
 
 
 # 座位模型初步创建
@@ -26,7 +26,7 @@ class Seat(models.Model):
 
 # 预约模型初步创建
 class Reservation(models.Model):
-    account = models.ForeignKey(User, on_delete=models.CASCADE)  # 与用户关联
+    account = models.ForeignKey(UserProf, on_delete=models.CASCADE)  # 与用户关联
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)  # 与座位关联
     is_delete = models.BooleanField(default=True)  # 当前预约/预约记录
     date = models.CharField(max_length=20, default=datetime.date.today())  # 预约时间点(年-月-日）
