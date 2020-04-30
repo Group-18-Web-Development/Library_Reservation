@@ -20,23 +20,23 @@ def add_data(request):
     #     user.save()
 
     # 添加安静区座位
-    # for i in range(50):
+    # for i in range(20):
     #     seat = Seat()
     #     seat.is_quiet_area = True
-    #     seat.floor = i % 5 + 1
-    #     seat.area = random.choice(['A', 'B', 'C'])
+    #     seat.floor = 5
+    #     seat.area = 'C'
     #     seat.table_type = random.choice([1, 2, 4])
-    #     seat.has_power = random.choice([True, False])
-    #     seat.table_position_quiet = seat.area + str(seat.floor * 100) + '-' + str(i)
+    #     seat.has_power = random.choice([True, False, False, False])
+    #     seat.table_position_quiet = seat.area + str(seat.floor * 100) + '-' + str(i+1)
     #     seat.save()
 
     # 添加非安静区座位
-    # for i in range(50):
+    # for i in range(30):
     #     seat = Seat()
     #     seat.is_quiet_area = False
-    #     seat.floor = i % 5 + 1
+    #     seat.floor = 5
     #     seat.table_type = random.choice([1, 2, 4])
-    #     seat.table_position_noisy = str(seat.floor * 100) + '-' + str(i)
+    #     seat.table_position_noisy = 'F' + str(seat.floor) + '-' + str(i+1)
     #     seat.save()
 
     # 添加预约记录
@@ -59,7 +59,10 @@ def user_login(request):
 
             if user:
                 login(request, user)
-                return HttpResponse("Wellcome You. You hava been authenticated successfully")
+                # 保存session记录
+                request.session['user_id'] = user.id
+                # 登录成功，定向至主页
+                return redirect(reverse('center:homepage'))
             else:
                 return HttpResponse("Sorry. Your username or password is not right.")
         else:
@@ -71,6 +74,7 @@ def user_login(request):
 
 
 def logout(request):
+    request.session.flush()
     return redirect(reverse('account:user_login'))
 
 

@@ -196,7 +196,7 @@
                 <span>有无电源：{{ seat_q.has_power }}|</span>
                 <span>位置：{{ seat_q.table_position_quiet }}</span>
                 <br>
-                <a href="{% url 'book:book_success' table_id=seat_q.id %}">预约</a>
+                <a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a>
                 <hr>
             {% endfor %}
 
@@ -217,7 +217,7 @@
                 <span>桌子类型{{ seat_n.table_type }}|</span>
                 <span>位置：{{ seat_n.table_position_noisy }}</span>
                 <br>
-                <a href="{% url 'book:book_success' table_id=seat_n.id %}">预约</a>
+                <a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a>
                 <hr>
             {% endfor %}
 

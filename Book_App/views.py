@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import time
 
+from Account_App.models import UserProf
 from Book_App.models import Seat, Reservation
 
 
@@ -97,12 +98,18 @@ def book_seat(request):
             for i in range(length):
                 seats_q = seats_q.exclude(id=result[i])
 
+            if seats_q.exists():
+                msg = "有剩余座位"
+            else:
+                msg = "无剩余座位"
+
             data = {
                 'days': days,
                 'time_choices': time_choices,
                 'seats_q': seats_q,
                 'day': day,
                 'time_choice': time_choice,
+                'msg': msg,
             }
             return render(request, 'main/book_seat.html', context=data)
 
@@ -136,19 +143,43 @@ def book_seat(request):
             for i in range(length):
                 seats_n = seats_n.exclude(id=result[i])
 
+            if seats_n.exists():
+                msg = "有剩余座位"
+            else:
+                msg = "无剩余座位"
+
             data = {
                 'days': days,
                 'time_choices': time_choices,
                 'seats_n': seats_n,
                 'day': day,
                 'time_choice': time_choice,
+                'msg': msg,
             }
             return render(request, 'main/book_seat.html', context=data)
 
 
 # 将用户选择预约的table id与用户绑定，存至reservation数据库
-def book_success(request, table_id):
-    print(table_id)
+def book_success(request, table_id, time_id, date):
+    user_id = request.session.get('user_id')
+    userprof_id = UserProf.objects.get(user_id=user_id)
+    reservation = Reservation()
+
+    time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]
+    if time_id == time_choices[0]:
+        reservation.time_id = 1
+    if time_id == time_choices[1]:
+        reservation.time_id = 2
+    if time_id == time_choices[2]:
+        reservation.time_id = 3
+
+    reservation.seat_id = table_id
+
+    reservation.account = userprof_id
+
+    reservation.date = date
+
+    reservation.save()
     return HttpResponse('预约成功')
 
 
