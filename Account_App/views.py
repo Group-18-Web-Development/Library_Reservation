@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, UserProfForm
 from Account_App.models import UserProf
 from Book_App.models import Reservation, Seat
 
@@ -81,13 +81,20 @@ def logout(request):
 def register(request):
     if request.method == "POST":
         user_form = RegistrationForm(request.POST)
-        if user_form.is_valid():
+        userpro_form = UserProfForm(request.POST)
+        if user_form.is_valid()*userpro_form.is_valid():
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
+            new_pro = userpro_form.save(commit=False)
+            new_pro.user = new_user
+            new_pro.save()
             return HttpResponse("successfully")
         else:
             return HttpResponse("sorry, your can not register.")
     else:
         user_form = RegistrationForm()
-        return render(request, "Account_App/register.html", {"form": user_form})
+        userpro_form = UserProfForm()
+
+        return render(request, "Account_App/register.html", {"form": user_form,"pro":userpro_form})
+
