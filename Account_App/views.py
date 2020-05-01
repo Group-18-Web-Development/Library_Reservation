@@ -31,13 +31,14 @@ def add_data(request):
     #     seat.save()
 
     # 添加非安静区座位
-    # for i in range(30):
-    #     seat = Seat()
-    #     seat.is_quiet_area = False
-    #     seat.floor = 5
-    #     seat.table_type = random.choice([1, 2, 4])
-    #     seat.table_position_noisy = 'F' + str(seat.floor) + '-' + str(i+1)
-    #     seat.save()
+    # for s in range(5):
+    #     for i in range(30):
+    #         seat = Seat()
+    #         seat.is_quiet_area = False
+    #         seat.floor = s+1
+    #         seat.table_type = random.choice([1, 2, 4])
+    #         seat.table_position_noisy = 'F' + str(seat.floor) + '-' + str(i + 1)
+    #         seat.save()
 
     # 添加预约记录
     # for i in range(9):
@@ -82,19 +83,18 @@ def register(request):
     if request.method == "POST":
         user_form = RegistrationForm(request.POST)
         userpro_form = UserProfForm(request.POST)
-        if user_form.is_valid()*userpro_form.is_valid():
+        if user_form.is_valid() * userpro_form.is_valid():
             new_user = user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             new_pro = userpro_form.save(commit=False)
             new_pro.user = new_user
             new_pro.save()
-            return HttpResponse("successfully")
+            return redirect(reverse('account:user_login'))
         else:
             return HttpResponse("sorry, your can not register.")
     else:
         user_form = RegistrationForm()
         userpro_form = UserProfForm()
 
-        return render(request, "Account_App/register.html", {"form": user_form,"pro":userpro_form})
-
+        return render(request, "Account_App/register.html", {"form": user_form, "pro": userpro_form})
