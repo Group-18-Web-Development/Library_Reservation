@@ -3,13 +3,28 @@
 
 {% block ext_css %}
     {{ block.super }}
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <style type="text/css">
+        .nav-pills {
+            width: 50px;
+        }
 
+        .nav-pills.affix-top {
+            top: 10px;
+            position: absolute;
+        }
+
+        .nav-pills.affix {
+            top: 100px;
+        }
+    </style>
 {% endblock %}
 
 
 {% block ext_js %}
     {{ block.super }}
-
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 {% endblock %}
 
 
@@ -74,52 +89,40 @@
 
 
 {% block content %}
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                            data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        基本信息
-                    </button>
-                </h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3" id="myScrollspy">
+                <ul id="myAffix" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="150">
+                    <li class="active"><a href="#section-1">基本信息</a></li>
+                    <li><a href="#section-2">预约记录</a></li>
+                    <li><a href="#section-3">不良记录</a></li>
+                </ul>
             </div>
+            <div class="col-xs-9">
+                <h3 id="section-1">基本信息</h3>
+                <ol style="list-style: none">
+                    <li>
+                        <div style="width:100px;height:100px;border-radius:50px;overflow:hidden;">
+                            <img src="{{ icon }} " width="100px" height="100px">
+                        </div>
+                    </li>
+                    <li>姓名：{{ name }}</li>
+                    <li>学号：{{ student_number }}</li>
+                    <li>电话：{{ phone_number }}</li>
+                    <li>邮箱：{{ mailbox }}</li>
+                    <li>个人简介：<p style="text-indent:2em">{{ introduction }}</p></li>
+                </ol>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    基本信息具体内容
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        预约记录
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    预约记录具体内容
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        信誉记录
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-                    信誉记录具体内容
-                </div>
+                <hr>
+                <h2 id="section-2">预约记录</h2>
+                <h3>暂无</h3>
+                <hr>
+                <h2 id="section-3">不良记录</h2>
+                <h4>信誉积分：{{ credit }}分</h4>
+
+                <hr>
             </div>
         </div>
     </div>
+
 {% endblock %}
