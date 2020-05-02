@@ -1,9 +1,11 @@
 import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-import time
 
+from django.urls import reverse
+
+from Account_App.models import UserProf
 from Book_App.models import Seat, Reservation
 
 
@@ -97,12 +99,18 @@ def book_seat(request):
             for i in range(length):
                 seats_q = seats_q.exclude(id=result[i])
 
+            if seats_q.exists():
+                msg = "有剩余座位"
+            else:
+                msg = "无剩余座位"
+
             data = {
                 'days': days,
                 'time_choices': time_choices,
                 'seats_q': seats_q,
                 'day': day,
                 'time_choice': time_choice,
+                'msg': msg,
             }
             return render(request, 'main/book_seat.html', context=data)
 
@@ -136,31 +144,106 @@ def book_seat(request):
             for i in range(length):
                 seats_n = seats_n.exclude(id=result[i])
 
+            if seats_n.exists():
+                msg = "有剩余座位"
+            else:
+                msg = "无剩余座位"
+
             data = {
                 'days': days,
                 'time_choices': time_choices,
                 'seats_n': seats_n,
                 'day': day,
                 'time_choice': time_choice,
+                'msg': msg,
             }
             return render(request, 'main/book_seat.html', context=data)
 
 
 # 将用户选择预约的table id与用户绑定，存至reservation数据库
-def book_success(request, table_id):
-    print(table_id)
-    return HttpResponse('预约成功')
+def book_success(request, table_id, time_id, date):
+    user_id = request.session.get('user_id')
+    userprof = UserProf.objects.get(user_id=user_id)
+    reservation = Reservation()
+
+    time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]
+    if time_id == time_choices[0]:
+        reservation.time_id = 1
+    if time_id == time_choices[1]:
+        reservation.time_id = 2
+    if time_id == time_choices[2]:
+        reservation.time_id = 3
+
+    reservation.seat_id = table_id
+
+    reservation.account = userprof
+
+    reservation.date = date
+
+    reservation.is_delete = False
+
+    reservation.save()
+    return redirect(reverse('book:book_record'))
 
 
 def book_record(request):
-    # 预约记录
-    return render(request, 'main/book_record.html')
+    user_id = request.session.get('user_id')
+    userprof = UserProf.objects.get(user_id=user_id)
+
+    # 判断该用户的所有预约记录是否过期，若过期则将预约记录的is_delete属性置为True
+    judge_is_delete(userprof)
+
+    reservation_records = Reservation.objects.filter(account=userprof)
+    reservation_records = reservation_records.order_by('-date', '-time_id')
+
+    # 两个列表，一个存储可取消预约的记录，一个存储不可取消（过期）的记录
+    records_not_delete = []
+    records_is_delete = []
+
+    for reservation_record in reservation_records:
+
+        # re_record用于存储记录的日期、时间段、预约座位的位置、安静区/非安静区、预约记录id
+        re_record = Re_Record()
+
+        re_record.day = reservation_record.date
+        re_record.id = reservation_record.id
+
+        if reservation_record.time_id == 1:
+            re_record.time_choice = '8:00-11:00'
+        if reservation_record.time_id == 2:
+            re_record.time_choice = '13:00-17:00'
+        if reservation_record.time_id == 3:
+            re_record.time_choice = '18:00-21:00'
+
+        # 与该预约记录关联的seat
+        seat = reservation_record.seat
+        if seat.is_quiet_area:
+            re_record.is_quiet = '安静区'
+            re_record.seat_id = seat.table_position_quiet
+        else:
+            re_record.is_quiet = '非安静区'
+            re_record.seat_id = seat.table_position_noisy
+
+        if not reservation_record.is_delete:
+            records_not_delete.append(re_record)
+        else:
+            records_is_delete.append(re_record)
+
+    data = {
+        'records_not_delete': records_not_delete,
+        'records_is_delete': records_is_delete,
+    }
+    return render(request, 'main/book_record.html', context=data)
 
 
-def book_cancel(request):
-    # 取消预约
-    return render(request, 'main/book_cancel.html')
+def book_cancel(request, reservation_id):
 
+    Reservation.objects.filter(id=reservation_id).delete()
+
+    return redirect(reverse('book:book_record'))
+
+
+# 辅助函数
 
 # 日期格式化函数 2020年5月1日 → 2020-05-01
 def date_transform(day_f):
@@ -189,3 +272,42 @@ def reservation_search_id(day, time_choice):
     for item in reservation_record:
         result.append(item.seat_id)
     return result
+
+
+# 判断该用户的所有预约记录是否过期，若过期则将预约记录的is_delete属性置为True
+def judge_is_delete(userprof):
+    reservation_records = Reservation.objects.filter(account=userprof).filter(is_delete=False)
+    today = str(datetime.date.today())
+
+    # 删除当日之前的记录
+    for reservation_record in reservation_records:
+        if reservation_record.date < today:
+            reservation_record.is_delete = True
+            reservation_record.save()
+
+    # 处理当日的记录，若当日时间已过，亦需删除
+    reservation_records = reservation_records.filter(is_delete=False).filter(date=today)
+    time_now = datetime.datetime.now().hour
+    if time_now >= 18:
+        for reservation_record in reservation_records:
+            reservation_record.is_delete = True
+            reservation_record.save()
+    elif time_now >= 13:
+        for reservation_record in reservation_records:
+            if reservation_record.time_id <= 2:
+                reservation_record.is_delete = True
+                reservation_record.save()
+    elif time_now >= 8:
+        for reservation_record in reservation_records:
+            if reservation_record.time_id == 1:
+                reservation_record.is_delete = True
+                reservation_record.save()
+
+
+class Re_Record:
+    def __init__(self):
+        self.day = ''
+        self.time_choice = ''
+        self.is_quiet = ''
+        self.seat_id = ''
+        self.id = 0

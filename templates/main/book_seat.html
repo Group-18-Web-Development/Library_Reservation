@@ -52,12 +52,9 @@
                                                         data-toggle="dropdown" role="button" aria-haspopup="true"
                                                         aria-expanded="false">预约<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a>
-                                                </li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
-                                                </li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a>
-                                                </li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a></li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a></li>
+{#                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>#}
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>
@@ -196,7 +193,7 @@
                 <span>有无电源：{{ seat_q.has_power }}|</span>
                 <span>位置：{{ seat_q.table_position_quiet }}</span>
                 <br>
-                <a href="{% url 'book:book_success' table_id=seat_q.id %}">预约</a>
+                <a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a>
                 <hr>
             {% endfor %}
 
@@ -217,7 +214,7 @@
                 <span>桌子类型{{ seat_n.table_type }}|</span>
                 <span>位置：{{ seat_n.table_position_noisy }}</span>
                 <br>
-                <a href="{% url 'book:book_success' table_id=seat_n.id %}">预约</a>
+                <a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a>
                 <hr>
             {% endfor %}
 
