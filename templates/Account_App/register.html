@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    Register
+{% endblock %}
+
 {% block ext_css %}
     {{ block.super }}
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/account/css/register.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Register</title>
 {% endblock %}
 
 {% load static %}
