@@ -1,14 +1,27 @@
+{% extends 'base.html' %}
 
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/account/css/login.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
 
 {% load static %}
 
 {% block title %}register user{% endblock %}
 
 {% block content %}
-<div class="row text-center vertical-middle-sm">
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Register</h1>
-    <p>If you are a user, <strong><a href="{% url 'account:user_login' %}">Login</a> </strong>,please</p>
-    <p>or register.</p>
+
+    <div class="content" align="center">
+    <br>
+    <p style="color:#C8C8C8">If you have already registered, <strong><a href="{% url 'account:user_login' %}">Login</a> </strong>,please</p>
+    <p style="color:#C8C8C8">or register.</p>
     <form class="form-horizontal" action="." method="post">{% csrf_token %}
         <div class="form-group">
             <label  class="col-md-5 control-label">Username</label>
@@ -30,10 +43,11 @@
             <label  class="col-md-5 control-label">Phone</label>
             <div class="col-md-6 text-left">{{ pro.phone }}</div>
         </div>
-        <input type="submit" class="btn btn-primary btn-lg" value="REGISTER">
 
-
-
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-primary" style="background-color: #203643;border-color: #cccccc" >Register</button>
+        </div>
     </form>
+<br>
 </div>
 {% endblock %}
