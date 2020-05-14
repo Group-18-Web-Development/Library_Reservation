@@ -6,15 +6,20 @@ from django.http import HttpResponse
 
 
 def homepage(request):
-    # try:
-    #     user_id = request.session.get('user_id')
-    # except Exception:
-    #     return redirect(reverse('account:user_login'))
+    try:
+        user_id = request.session.get('user_id')*1
+    except Exception:
+        return redirect(reverse('account:user_login'))
 
     return render(request, 'main/homepage.html')
 
 
 def personal_center(request):
+    try:
+        user_id = request.session.get('user_id')*1
+    except Exception:
+        return redirect(reverse('account:user_login'))
+
     user_id = request.session.get('user_id')
     userprof = UserProf.objects.get(user_id=user_id)
 

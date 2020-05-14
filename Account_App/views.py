@@ -34,6 +34,12 @@ def user_login(request):
 
 
 def logout(request):
+
+    try:
+        user_id = request.session.get('user_id')*1
+    except Exception:
+        return redirect(reverse('account:user_login'))
+
     request.session.flush()
     return redirect(reverse('account:user_login'))
 
