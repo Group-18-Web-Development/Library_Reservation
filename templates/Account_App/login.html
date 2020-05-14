@@ -48,13 +48,16 @@
             {{ form.as_p }}
             <div class="btn-group btn-group-sm">
                 <a href=" ">
-                    <button type="submit" class="btn btn-primary" style="background-color: #203643;border-color: #cccccc" >Login</button>
-                </a>
-                <a href="{% url 'account:user_register' %}">
-                    <button type="button" class="btn btn-primary" style="background-color: #203643;border-color: #cccccc">Register
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #203643;border-color: #cccccc">Login
                     </button>
                 </a>
-  </div>
+                <a href="{% url 'account:user_register' %}">
+                    <button type="button" class="btn btn-primary"
+                            style="background-color: #203643;border-color: #cccccc">Register
+                    </button>
+                </a>
+            </div>
         </form>
         <br>
     </div>
