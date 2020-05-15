@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'Account_App',
     'Center_App',
     'Book_App',
+    'password_reset',
+
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,15 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads')
 
 
+
+EMAIL_HOST = 'smtp.qq.com'
+
+EMAIL_HOST_USER = '2386954589@qq.com'
+
+EMAIL_HOST_PASSWORD = 'idyeesptiqesdjgc'
+
+EMAIL_PORT = 25
+
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = '18组开发 <2386954589@qq.com>'

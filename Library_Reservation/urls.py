@@ -21,4 +21,6 @@ urlpatterns = [
     path('account/', include('Account_App.urls', namespace='account')),
     path('book/', include('Book_App.urls', namespace='book')),
     path('center/', include('Center_App.urls', namespace='center')),
+    path('password-reset/', include('password_reset.urls')),
+
 ]
