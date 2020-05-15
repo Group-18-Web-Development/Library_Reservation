@@ -28,4 +28,5 @@
 3.	添加邮件提醒功能
 
 Django 3.0.5  
-数据库 sqlite 
+数据库 sqlite
+邮箱验证所需库：django-password-reset
