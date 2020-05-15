@@ -250,8 +250,11 @@ ul.dropdown-menu {
 
 /*-- footer --*/
 .footer {
-    padding: 4em 0;
-    background: rgba(212, 212, 212, 0.21);
+    background-image: url("../image/footer.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 200px;
 }
 
 .agile-footer-grid h4 {
@@ -263,7 +266,7 @@ ul.dropdown-menu {
 }
 
 .agile-footer-grid p {
-    color: #bbbbbb;
+    /*color: #bbbbbb;*/
     font-size: .9em;
     line-height: 1.8em;
     margin: 0;
