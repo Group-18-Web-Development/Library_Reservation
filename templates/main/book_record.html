@@ -79,37 +79,36 @@
 {% block content %}
 
     <div class="text-center"><h1>预约记录</h1></div>
-    <div class="row">
-        <div class="text-center">
-            <hr>
-
-            {#             时间未过-可取消的预约      #}
+    <div class="text-center" style="max-width: 800px;">
+        <table class="table table-bordered">
+            <thead>
+            <th width="15%" style="text-align:center">日期</th>
+            <th width="15%" style="text-align:center">时间</th>
+            <th width="15%" style="text-align:center">是否安静区</th>
+            <th width="15%" style="text-align:center">座位编号</th>
+            <th wdith="15%" style="text-align:center">状态</th>
+            </thead>
+            <tbody>
             {% for record in records_not_delete %}
-                <br>
-                <span>{{ record.day }}</span>
-                <span>{{ record.time_choice }}</span>
-                <br>
-                <span>{{ record.is_quiet }}</span>
-                <span>{{ record.seat_id }}</span>
-                <br>
-                <a href="{% url 'book:book_cancel' reservation_id=record.id %}">取消预约</a>
-                <hr>
+                <tr>
+                    <td><span>{{ record.day }}</span></td>
+                    <td><span>{{ record.time_choice }}</span></td>
+                    <td><span>{{ record.is_quiet }}</span></td>
+                    <td><span>{{ record.seat_id }}</span></td>
+                    <td><a href="{% url 'book:book_cancel' reservation_id=record.id %}">取消预约</a></td>
+                </tr>
             {% endfor %}
-
-            {#             时间已过-不可取消的预约      #}
             {% for record in records_is_delete %}
-                <br>
-                <span>{{ record.day }}</span>
-                <span>{{ record.time_choice }}</span>
-                <br>
-                <span>{{ record.is_quiet }}</span>
-                <span>{{ record.seat_id }}</span>
-                <br>
-                <hr>
+                <tr>
+                    <td><span>{{ record.day }}</span></td>
+                    <td><span>{{ record.time_choice }}</span></td>
+                    <td><span>{{ record.is_quiet }}</span></td>
+                    <td><span>{{ record.seat_id }}</span></td>
+                    <td>已生效</td>
+                </tr>
             {% endfor %}
-
-
-        </div>
+            </tbody>
+        </table>
     </div>
 
 {% endblock %}
