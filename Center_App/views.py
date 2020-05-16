@@ -6,10 +6,10 @@ from django.http import HttpResponse
 
 
 def homepage(request):
-    try:
-        user_id = request.session.get('user_id')*1
-    except Exception:
-        return redirect(reverse('account:user_login'))
+    # try:
+    #     user_id = request.session.get('user_id')*1
+    # except Exception:
+    #     return redirect(reverse('account:user_login'))
 
     return render(request, 'main/homepage.html')
 
@@ -23,7 +23,6 @@ def personal_center(request):
     user_id = request.session.get('user_id')
     userprof = UserProf.objects.get(user_id=user_id)
 
-    print(type(user_id))
     icon = userprof.icon
 
     if request.method == 'POST':
@@ -32,7 +31,6 @@ def personal_center(request):
         userprof.save()
 
     data = {
-        # 'icon': icon,
         'icon': '../../static/uploads/' + userprof.icon.url,
         'name': userprof.name,
         'student_number': userprof.student_number,

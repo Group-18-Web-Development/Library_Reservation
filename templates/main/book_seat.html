@@ -102,6 +102,8 @@
 
                     {#    选择区域    #}
                     <legend>请选择 安静区/非安静区</legend>
+                    <label><input type="radio" id="zone" name="zone" value="quiet_or_noisy" aria-required="true"
+                                  onChange="Selected(this)"> all </label>
                     <label><input type="radio" id="zone" name="zone" value="quiet" aria-required="true"
                                   onChange="Selected(this)"> 安静区 </label>
                     <label><input type="radio" id="zone" name="zone" value="noisy" aria-required="true"
@@ -203,7 +205,7 @@
                     <td><span>{{ seat_q.table_type }}</span></td>
                     <td><span>{{ seat_q.has_power }}</span></td>
                     <td><span>{{ seat_q.table_position_quiet }}</span></td>
-                    <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">点击预约</a></span></td>
+                    <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span></td>
                 </tr>
             {% endfor %}
             {% for seat_n in seats_n %}

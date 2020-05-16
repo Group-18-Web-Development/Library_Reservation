@@ -74,7 +74,7 @@ def add_data(request):
     #     user.email = '123456@gmail.com'
     #     user.save()
 
-    # 添加安静区座位
+    # # 添加安静区座位
     # for j in range(5):
     #     for i in range(20):
     #         seat = Seat()
@@ -107,8 +107,8 @@ def add_data(request):
     #         seat.has_power = random.choice([True, False, False, False])
     #         seat.table_position_quiet = seat.area + str(seat.floor * 100) + '-' + str(i+1)
     #         seat.save()
-
-    # 添加非安静区座位
+    #
+    # # 添加非安静区座位
     # for s in range(5):
     #     for i in range(30):
     #         seat = Seat()

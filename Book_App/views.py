@@ -10,9 +10,8 @@ from Book_App.models import Seat, Reservation
 
 
 def book_seat(request):
-
     try:
-        user_id = request.session.get('user_id')*1
+        user_id = request.session.get('user_id') * 1
     except Exception:
         return redirect(reverse('account:user_login'))
 
@@ -49,21 +48,24 @@ def book_seat(request):
         length = len(result)
 
         # 安静区/非安静区处理
-        # if zone != 'quiet' and zone != 'noisy':
-        #     seats = Seat.objects.all()
-        #
-        #     # 对seats_q进行最后的筛选，若这些座位的id在result中出现，则说明该位置已被预约，应剔除
-        #     for i in range(length):
-        #         seats = seats.exclude(id=result[i])
-        #
-        #     data = {
-        #         'days': days,
-        #         'time_choices': time_choices,
-        #         'seats_q': seats,
-        #         'day': day,
-        #         'time_choice': time_choice,
-        #     }
-        #     return render(request, 'main/book_seat.html', context=data)
+        if zone == 'quiet_or_noisy':
+            seats = Seat.objects.all()
+
+            # 对seats_q进行最后的筛选，若这些座位的id在result中出现，则说明该位置已被预约，应剔除
+            for i in range(length):
+                seats = seats.exclude(id=result[i])
+
+            seats_q = seats.filter(is_quiet_area=True)
+            seats_n = seats.filter(is_quiet_area=False)
+            data = {
+                'days': days,
+                'time_choices': time_choices,
+                'seats_q': seats_q,
+                'seats_n': seats_n,
+                'day': day,
+                'time_choice': time_choice,
+            }
+            return render(request, 'main/book_seat.html', context=data)
 
         # 安静区处理
         if zone == 'quiet':
@@ -168,9 +170,8 @@ def book_seat(request):
 
 # 将用户选择预约的table id与用户绑定，存至reservation数据库
 def book_success(request, table_id, time_id, date):
-
     try:
-        user_id = request.session.get('user_id')*1
+        user_id = request.session.get('user_id') * 1
     except Exception:
         return redirect(reverse('account:user_login'))
 
@@ -199,9 +200,8 @@ def book_success(request, table_id, time_id, date):
 
 
 def book_record(request):
-
     try:
-        user_id = request.session.get('user_id')*1
+        user_id = request.session.get('user_id') * 1
     except Exception:
         return redirect(reverse('account:user_login'))
 
@@ -255,13 +255,21 @@ def book_record(request):
 
 
 def book_cancel(request, reservation_id):
-
     try:
-        user_id = request.session.get('user_id')*1
+        user_id = request.session.get('user_id') * 1
     except Exception:
         return redirect(reverse('account:user_login'))
 
     Reservation.objects.filter(id=reservation_id).delete()
+
+    # 个人信誉评价，若取消预约2次，则信誉度减1
+    user_id = request.session.get('user_id')
+    userprof = UserProf.objects.get(user_id=user_id)
+    userprof.delete_times += 1
+    if userprof.delete_times % 2 == 0:
+        if userprof.credit >= 1:
+            userprof.credit -= 1
+    userprof.save()
 
     return redirect(reverse('book:book_record'))
 
