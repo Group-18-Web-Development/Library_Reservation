@@ -1,4 +1,5 @@
 import datetime
+from random import choice
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -47,8 +48,40 @@ def book_seat(request):
         result = reservation_search_id(day, time_choice)
         length = len(result)
 
+        # 随机选座处理
+        if zone == 'auto_book':
+            seats = Seat.objects.all()
+
+            # 对seats_q进行最后的筛选，若这些座位的id在result中出现，则说明该位置已被预约，应剔除
+            for i in range(length):
+                seats = seats.exclude(id=result[i])
+
+            reservation = Reservation()
+            user_id = request.session.get('user_id')
+            userprof = UserProf.objects.get(user_id=user_id)
+
+            time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]
+            if time_choice == time_choices[0]:
+                reservation.time_id = 1
+            if time_choice == time_choices[1]:
+                reservation.time_id = 2
+            if time_choice == time_choices[2]:
+                reservation.time_id = 3
+
+            seat = choice(seats)
+            reservation.seat_id = seat.id
+
+            reservation.account = userprof
+
+            reservation.date = day
+
+            reservation.is_delete = False
+
+            reservation.save()
+            return redirect(reverse('book:book_record'))
+
         # 安静区/非安静区处理
-        if zone == 'quiet_or_noisy':
+        elif zone == 'quiet_or_noisy':
             seats = Seat.objects.all()
 
             # 对seats_q进行最后的筛选，若这些座位的id在result中出现，则说明该位置已被预约，应剔除

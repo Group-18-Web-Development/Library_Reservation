@@ -103,11 +103,13 @@
                     {#    选择区域    #}
                     <legend>请选择 安静区/非安静区</legend>
                     <label><input type="radio" id="zone" name="zone" value="quiet_or_noisy" aria-required="true"
-                                  onChange="Selected(this)"> all </label>
+                                  onChange="Selected(this)"> 安静区/非安静区 </label>
                     <label><input type="radio" id="zone" name="zone" value="quiet" aria-required="true"
                                   onChange="Selected(this)"> 安静区 </label>
                     <label><input type="radio" id="zone" name="zone" value="noisy" aria-required="true"
                                   onChange="Selected(this)"> 非安静区 </label>
+                    <label><input type="radio" id="zone" name="zone" value="auto_book" aria-required="true"
+                                  onChange="Selected(this)"> 随机选座 </label>
                     {#    安静区    #}
                     <div id="quietmore" style="display: none;">
                         {#    选择floor    #}
