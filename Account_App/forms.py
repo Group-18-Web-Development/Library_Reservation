@@ -22,5 +22,5 @@ class RegistrationForm(forms.ModelForm):
 class UserProfForm(forms.ModelForm):
     class Meta:
         model = UserProf
-        fields = ("phone",)
+        fields = ("phone_number",)
 

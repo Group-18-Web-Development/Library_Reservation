@@ -37,7 +37,7 @@ def personal_center(request):
         'name': userprof.name,
         'student_number': userprof.student_number,
         'phone_number': userprof.phone_number,
-        'mailbox': userprof.mailbox,
+        'mailbox': userprof.user.email,
         'introduction': userprof.introduction,
         'record_id_new': None,  # 待完成
         # 记录id（待完成）

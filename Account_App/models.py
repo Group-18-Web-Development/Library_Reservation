@@ -11,10 +11,8 @@ class UserProf(models.Model):
     introduction = models.TextField(default="个人简介")  # 个人简介
     name = models.CharField(default="user", max_length=20)  # 姓名
     student_number = models.CharField(max_length=12)  # 学号
-    mailbox = models.EmailField(default="user@email.com")  # 邮箱
     phone_number = models.CharField(max_length=11)  # 电话号码
     record_id = models.TextField(editable=False)  # 预约记录
-    phone = models.CharField(max_length=20, null=True)  # 电话
 
     class Meta:
 
