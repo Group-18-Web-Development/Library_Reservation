@@ -178,47 +178,49 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="text-center">
-
+    <div class="text-center"><h1>座位选择</h1></div>
+    <div class="text-center">
+        <table class="table table-bordered" align="center" style="max-width: 800px;">
+            <thead>
+            <th width="15%" style="text-align:center">日期</th>
+            <th width="15%" style="text-align:center">时间</th>
+            <th width="15%" style="text-align:center">是否安静区</th>
+            <th width="10%" style="text-align:center">楼层</th>
+            <th wdith="10%" style="text-align:center">区域</th>
+            <th wdith="10%" style="text-align:center">桌子类型</th>
+            <th wdith="10%" style="text-align:center">有无电源</th>
+            <th wdith="10%" style="text-align:center">位置</th>
+            <th wdith="10%" style="text-align:center">预约</th>
+            </thead>
+            <tbody>
             {% for seat_q in seats_q %}
-                <br>
-                <span>{{ day }}|</span>
-                <span>{{ time_choice }}|</span>
-                <br>
-                <span>安静区|</span>
-                <span>楼层：{{ seat_q.floor }}</span>
-                <span>区域：{{ seat_q.area }}|</span>
-                <span>桌子类型{{ seat_q.table_type }}|</span>
-                <span>有无电源：{{ seat_q.has_power }}|</span>
-                <span>位置：{{ seat_q.table_position_quiet }}</span>
-                <br>
-                <a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a>
-                <hr>
+                <tr>
+                    <td><span>{{ day }}</span></td>
+                    <td><span>{{ time_choice }}</span></td>
+                    <td><span>是</span></td>
+                    <td><span>{{ seat_q.floor }}</span></td>
+                    <td><span>{{ seat_q.area }}</span></td>
+                    <td><span>{{ seat_q.table_type }}</span></td>
+                    <td><span>{{ seat_q.has_power }}</span></td>
+                    <td><span>{{ seat_q.table_position_quiet }}</span></td>
+                    <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">点击预约</a></span></td>
+                </tr>
             {% endfor %}
-
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="text-center">
-
             {% for seat_n in seats_n %}
-                <br>
-                <span>{{ day }}</span>
-                <span>{{ time_choice }}</span>
-                <br>
-                <span>非安静区|</span>
-                <span>楼层：{{ seat_n.floor }}|</span>
-                <span>桌子类型{{ seat_n.table_type }}|</span>
-                <span>位置：{{ seat_n.table_position_noisy }}</span>
-                <br>
-                <a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a>
-                <hr>
+                <tr>
+                    <td><span>{{ day }}</span></td>
+                    <td><span>{{ time_choice }}</span></td>
+                    <td><span>否</span></td>
+                    <td><span>{{ seat_n.floor }}</span></td>
+                    <td><span>不适用</span></td>
+                    <td><span>{{ seat_n.table_type }}</span></td>
+                    <td><span>不适用</span></td>
+                    <td><span>{{ seat_n.table_position_noisy }}</span></td>
+                    <td><span><a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a></span></td>
+                </tr>
             {% endfor %}
-
-        </div>
+            </tbody>
+        </table>
     </div>
 
 {% endblock %}
