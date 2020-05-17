@@ -94,10 +94,12 @@ def book_seat(request):
             seats_n = seats.filter(is_quiet_area=False)
             data = {
                 'days': days,
+                'today': today,
                 'time_choices': time_choices,
                 'seats_q': seats_q,
                 'seats_n': seats_n,
                 'day': day,
+                'present_hour': present_hour,
                 'time_choice': time_choice,
             }
             return render(request, 'main/book_seat.html', context=data)
@@ -149,6 +151,7 @@ def book_seat(request):
 
             data = {
                 'days': days,
+                'today': today,
                 'time_choices': time_choices,
                 'seats_q': seats_q,
                 'day': day,
@@ -195,9 +198,11 @@ def book_seat(request):
 
             data = {
                 'days': days,
+                'today': today,
                 'time_choices': time_choices,
                 'seats_n': seats_n,
                 'day': day,
+                'present_hour': present_hour,
                 'time_choice': time_choice,
                 'msg': msg,
             }
