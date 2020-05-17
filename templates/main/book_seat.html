@@ -88,16 +88,33 @@
                     {#    选择日期以及时间段    #}
                     <legend>请选择日期以及时间段</legend>
                     <label>
-                        <select name="day">
+                        <select id="day" name="day" onchange="reset_time()">
                             {% for day in days %}
                                 <option>{{ day }}</option>
                             {% endfor %}
                         </select>
-                        <select name="time_choice">
-                            {% for time_choice in time_choices %}
-                                <option>{{ time_choice }}</option>
-                            {% endfor %}
-                        </select>
+                        <select id="time_choice" name="time_choice"></select>
+                        <script language="javascript" type="text/javascript">
+                            function reset_time() {
+                                $("#time_choice").empty();
+                                var ById = document.getElementById("day");
+                                var day=ById.options[ById.selectedIndex].text;
+                                if (day == "{{ today }}") {
+                                    if ({{ present_hour }} < 8) document.getElementById("time_choice").add(new Option("8:00-11:00"));
+                                    if ({{ present_hour }} < 13) document.getElementById("time_choice").add(new Option("13:00-17:00"));
+                                    if ({{ present_hour }} < 18) document.getElementById("time_choice").add(new Option("18:00-21:00"));
+                                }
+                                else {
+                                    document.getElementById("time_choice").add(new Option("8:00-11:00"));
+                                    document.getElementById("time_choice").add(new Option("13:00-17:00"));
+                                    document.getElementById("time_choice").add(new Option("18:00-21:00"));
+                                }
+                            }
+                            if(document.attachEvent)
+                                window.attachEvent("onload", reset_time);
+                            else
+                                window.addEventListener('load', reset_time, false);
+                        </script>
                     </label>
 
                     {#    选择区域    #}

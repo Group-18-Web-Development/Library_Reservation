@@ -21,6 +21,7 @@ def book_seat(request):
     # 获取时间（假设能预约7天内的座位）
     days = []
     today = datetime.date.today()
+    present_hour = datetime.datetime.now().hour
     days.append(today)
     for i in range(6):
         days.append(today + datetime.timedelta(days=i + 1))
@@ -31,6 +32,8 @@ def book_seat(request):
     if request.method == 'GET':
         context = {
             'days': days,
+            'today': today,
+            'present_hour': present_hour,
             'time_choices': time_choices,
         }
         return render(request, 'main/book_seat.html', context=context)
@@ -40,7 +43,6 @@ def book_seat(request):
         # 日期格式化 2020年5月1日 → 2020-05-01
         day_not = request.POST.get('day')
         day = date_transform(day_not)
-
         time_choice = request.POST.get('time_choice')
         zone = request.POST.get('zone')
 
@@ -150,6 +152,7 @@ def book_seat(request):
                 'time_choices': time_choices,
                 'seats_q': seats_q,
                 'day': day,
+                'present_hour': present_hour,
                 'time_choice': time_choice,
                 'msg': msg,
             }
