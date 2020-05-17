@@ -40,5 +40,5 @@ class Reservation(models.Model):
     class Meta:
         db_table = 'reservation'
         unique_together = (
-            ("account", "seat", "time_id"),  # 这三个字段联合唯一，防止重复预订
+            ("account", "seat", "time_id", "date"),  # 这三个字段联合唯一，防止重复预订
         )
