@@ -205,7 +205,15 @@
                     <td><span>{{ seat_q.floor }}</span></td>
                     <td><span>{{ seat_q.area }}</span></td>
                     <td><span>{{ seat_q.table_type }}</span></td>
-                    <td><span>{{ seat_q.has_power }}</span></td>
+                    <td>
+                        <span>
+                            {% if seat_q.has_power %}
+                                是
+                            {% else %}
+                                否
+                            {% endif %}
+                        </span>
+                    </td>
                     <td><span>{{ seat_q.table_position_quiet }}</span></td>
                     <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span></td>
                 </tr>
