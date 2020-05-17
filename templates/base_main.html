@@ -15,9 +15,11 @@
     <div class="footer">
         <div class="container">
             <div class="agile-footer-grids">
+                <br>
+                <br>
                 <div class="col-md-4 agile-footer-grid">
-                    <h4 class="text-left">Contact Us</h4>
-                    <p class="text-left" style="color:black">
+                    <h4 class="text-left" style="color:white">Contact Us</h4>
+                    <p class="text-left" style="color:white">
                         <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
                             ：中国上海市闵行区东川路800号 200240
                         </span>
@@ -30,9 +32,9 @@
                     </p>
                 </div>
                 <div class="col-md-4 agile-footer-grid">
-                    <h4 class="text-left">Developer</h4>
+                    <h4 class="text-left" style="color:white">Developer</h4>
                     <p class="text-left">
-                        <p style="color:black">
+                        <p style="color:white">
                         范佳妮、陆正昊、陈瀚嵩、吴嘉豪、顾晓然、
                         <span>
                             于凯泽、ARAY SEITESH、THANATHIP LIU
@@ -41,15 +43,26 @@
                     </p>
                 </div>
                 <div class="col-md-4 agile-footer-grid">
-                    <h4 class="text-left"> Navigation</h4>
+                    <h4 class="text-left" style="color:white"> Navigation</h4>
                     <ul>
-                        <li class="text-left"><a href="{% url 'center:homepage' %}">主页</a></li>
-                        <li class="text-left"><a href="{% url 'book:book_seat' %}">座位预约</a></li>
-                        <li class="text-left"><a href="{% url 'book:book_record' %}">预约记录</a></li>
-                        <li class="text-left"><a href="{% url 'center:personal_center' %}">个人中心</a></li>
-                        <li class="text-left"><a href="{% url 'account:logout' %}">退出</a></li>
+                        <p class="text-justify">
+                        <a href="{% url 'center:homepage' %}" style="color:white">主页</a>
+                        <nobr>&emsp;&emsp;</nobr>
+                        <a href="{% url 'book:book_seat' %}" style="color:white">座位预约</a>
+                        <nobr>&emsp;&emsp;</nobr>
+                        <a href="{% url 'book:book_record' %}" style="color:white">预约记录</a>
+                        <nobr>&emsp;&emsp;</nobr>
+                        <span>
+                        <a href="{% url 'center:personal_center' %}" style="color:white">个人中心</a>
+                        <nobr>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;</nobr>
+                        <a href="{% url 'account:logout' %}" style="color:white">退出</a>
+                        </span>
+                        </p>
                     </ul>
                 </div>
+                <br>
+                <br>
+                <br>
                 <div class="clearfix"></div>
             </div>
         </div>
