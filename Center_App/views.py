@@ -23,7 +23,7 @@ def personal_center(request):
     user_id = request.session.get('user_id')
     userprof = UserProf.objects.get(user_id=user_id)
 
-    icon = userprof.icon
+    # icon = userprof.icon
 
     if request.method == 'POST':
         icon = request.FILES.get('icon')
