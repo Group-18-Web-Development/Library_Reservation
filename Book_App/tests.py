@@ -1,8 +1,12 @@
 from django.test import TestCase
 from Book_App.models import Seat
 from Book_App.models import Reservation
+from Book_App.views import book_seat
 from Account_App.models import UserProf
 from django.contrib.auth.models import User
+from django.urls import reverse
+from django.test import Client
+from django.http import HttpRequest
 
 
 # Seat类测试
@@ -13,7 +17,7 @@ class SeatTestCase(TestCase):
 
     def test_Seat_models(self):
         result = Seat.objects.get(table_position_quiet='A100-001')
-        self.assertEqual(result.table_position_quiet,'A100-001')
+        self.assertEqual(result.table_position_quiet, 'A100-001')
         self.assertEqual(result.is_quiet_area, True)
         self.assertEqual(result.floor, 1)
         self.assertEqual(result.area, 'A')
@@ -27,7 +31,6 @@ class SeatTestCase(TestCase):
 class ReservationTestCase(TestCase):
     def setUp(self):
         test_user = User.objects.create(username='Test_User')
-        print(test_user.username)
         test_user = UserProf.objects.create(user=test_user, icon='static/image/zhangzhe.jpg',
                                             credit=5, delete_times=0, introduction='无', name='Test_User',
                                             student_number='000001', phone_number='000001')
@@ -53,8 +56,8 @@ class ReservationTestCase(TestCase):
         self.assertEqual(result.time_id, 1)
 
 
-class ReserveTestCase(TestCase):
-    pass
+
+
 
 if __name__ == '__main__':
     TestCase.main()
