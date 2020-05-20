@@ -95,7 +95,7 @@
                     <td><span>{{ record.time_choice }}</span></td>
                     <td><span>{{ record.is_quiet }}</span></td>
                     <td><span>{{ record.seat_id }}</span></td>
-                    <td><a href="{% url 'book:book_cancel' reservation_id=record.id %}">取消预约</a></td>
+                    <td><a href="{% url 'book:book_cancel' reservation_id=record.id %}" onclick="return confirm('你确定取消吗？')">取消预约</a></td>
                 </tr>
             {% endfor %}
             {% for record in records_is_delete %}
