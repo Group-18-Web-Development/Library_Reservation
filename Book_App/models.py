@@ -4,7 +4,7 @@ import datetime
 from Account_App.models import UserProf
 
 
-# 座位模型初步创建
+# 座位模型创建
 class Seat(models.Model):
     is_quiet_area = models.BooleanField(default=True)  # 安静区/非安静区
 
@@ -24,7 +24,7 @@ class Seat(models.Model):
         db_table = 'seat'
 
 
-# 预约模型初步创建
+# 预约模型创建
 class Reservation(models.Model):
     account = models.ForeignKey(UserProf, on_delete=models.CASCADE)  # 与用户关联
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)  # 与座位关联

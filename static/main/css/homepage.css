@@ -1,0 +1,123 @@
+.carousel {
+    height: 500px;
+    background: black;
+    margin-bottom: 60px;
+}
+
+.carousel .item {
+    height: 500px;
+    background: white;
+}
+
+.carousel .item img {
+    width: 100%;
+}
+
+.carousel-caption {
+    z-index: 10;
+}
+
+.carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+#summary-container .col-md-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.divider {
+    margin: 40px 0px;
+}
+
+.feature {
+    padding: 30px 0px;
+}
+
+.feature-heading {
+    font-size: 50px;
+    color: #2a6496;
+    margin-top: 120px;
+}
+
+.feature-heading .text-muted {
+    font-size: 28px;
+    color: #999999;
+}
+
+/* 响应式布局 */
+
+@media (max-width: 768px) {
+
+    .summary {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+
+    .carousel {
+        height: 300px;
+        margin-bottom: 30px;
+    }
+
+    .carousel .item {
+        height: 300px;
+    }
+
+    .carousel img {
+        min-height: 300px;
+    }
+
+    .carousel-caption p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .feature-heading {
+        font-size: 34px;
+    }
+
+    .feature-heading .text-muted {
+        font-size: 22px;
+    }
+}
+
+/* 涟漪 */
+section {
+    height: 85vh;
+    weight: 80vh;
+    z-index: 100 !important;
+}
+
+#carousel-example-generic {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+}
+
+#carousel-example-generic .left {
+    z-index: 1000 !important;
+}
+
+#carousel-example-generic .right {
+    z-index: 1000 !important;
+}
+
+#carousel-example-generic .zi {
+    z-index: 1000 !important;
+}
+
+.col-md-4 img:hover {
+    transform: scale(1.2);
+    transition: 0.4s ease;
+}
+
+.col-md-5 img:hover {
+    transform: scale(1.1);
+    transition: 0.4s ease;
+}
+
+#bobo {
+    height: 100px;
+}

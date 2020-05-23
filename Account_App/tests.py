@@ -3,6 +3,7 @@ from Account_App.models import UserProf
 from django.contrib.auth.models import User
 from django.test import Client
 
+
 # UsrProf类测试
 class AccountTestCase(TestCase):
 

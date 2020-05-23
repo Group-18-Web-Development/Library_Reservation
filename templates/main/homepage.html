@@ -3,158 +3,14 @@
 
 {% block ext_css %}
     {{ block.super }}
-    <style>
-        .carousel {
-            height: 500px;
-            background: black;
-            margin-bottom: 60px;
-        }
-
-        .carousel .item {
-            height: 500px;
-            background: white;
-        }
-
-        .carousel .item img {
-            width: 100%;
-        }
-
-        .carousel-caption {
-            z-index: 10;
-        }
-
-        .carousel-caption p {
-            margin-bottom: 20px;
-            font-size: 20px;
-            line-height: 1.8;
-        }
-
-        #summary-container .col-md-4 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .divider {
-            margin: 40px 0px;
-        }
-
-        .feature {
-            padding: 30px 0px;
-        }
-
-        .feature-heading {
-            font-size: 50px;
-            color: #2a6496;
-            margin-top: 120px;
-        }
-
-        .feature-heading .text-muted {
-            font-size: 28px;
-            color: #999999;
-        }
-
-        /* 响应式布局 */
-
-        @media (max-width: 768px) {
-
-            .summary {
-                padding-right: 3px;
-                padding-left: 3px;
-            }
-
-            .carousel {
-                height: 300px;
-                margin-bottom: 30px;
-            }
-
-            .carousel .item {
-                height: 300px;
-            }
-
-            .carousel img {
-                min-height: 300px;
-            }
-
-            .carousel-caption p {
-                font-size: 16px;
-                line-height: 1.4;
-            }
-
-            .feature-heading {
-                font-size: 34px;
-            }
-
-            .feature-heading .text-muted {
-                font-size: 22px;
-            }
-        }
-
-        /* 涟漪 */
-        section {
-            height: 85vh;
-            weight: 80vh;
-            z-index: 100 !important;
-        }
-
-        #carousel-example-generic {
-            position: absolute;
-            top: 100px;
-            left: 0px;
-        }
-
-        #carousel-example-generic .left {
-            z-index: 1000 !important;
-        }
-
-        #carousel-example-generic .right {
-            z-index: 1000 !important;
-        }
-
-        #carousel-example-generic .zi {
-            z-index: 1000 !important;
-        }
-
-        .col-md-4 img:hover {
-            transform: scale(1.2);
-            transition: 0.4s ease;
-        }
-
-        .col-md-5 img:hover {
-            transform: scale(1.1);
-            transition: 0.4s ease;
-        }
-
-        #bobo {
-            height: 100px;
-        }
-    </style>
+     <link rel="stylesheet" href="../../static/main/css/homepage.css">
 {% endblock %}
 
 
 {% block ext_js %}
     {{ block.super }}
     <script src="../../static/js/jquery.ripples-min.js"></script>
-    <script>
-        $("#demo-navbar .dropdown-menu a").click(function () {
-            var href = $(this).attr('href');
-            $("#tab-list a[href = '" + href + "']").tab('show');
-        })
-        // 设置涟漪效果使用方法非常简单 只需要引入jq库 然后在使用选择器选择要渲染的标签获得jQuery对象后使用ripples方法，下面三个参数自己试验就可以实现涟漪的效果了.例如
-        $('section').ripples({
-            //imageUrl: null,   //要用作背景的图像的URL。如果没有，插件将尝试使用计算的background-imageCSS属性的值。也接受数据URI。
-            dropRadius: 10, //通过在画布上单击或移动鼠标而产生的拖放的大小（以像素为单位）。
-            perturbance: 0.4, //基本上由波纹引起的折射量。0表示没有折射。
-            resolution: 512, //要呈现的WebGL纹理的宽度和高度。此值越大，渲染越平滑，涟漪传播越慢。
-            //interactive: true,//鼠标点击和鼠标移动是否会触发效果。
-            //crossOrigin: "",  //用于受影响图像的crossOrigin属性。
-        });
-        // 设置页脚特效
-        jQuery('#bobo').raindrops({
-            color: '#a5d2da',
-            canvasHeight: 80,
-            waveHeight: 300,
-        });
-    </script>
+    <script src="../../static/main/js/homepage.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -169,12 +25,6 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    {#                    <div class="w3-header-top">#}
-                    {#                        <ul>#}
-                    {#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
-                    {#                            </li>#}
-                    {#                        </ul>#}
-                    {#                    </div>#}
                     <div class="w3-header-bottom">
                         <div class="top-nav">
                             <nav class="navbar navbar-default">
@@ -187,7 +37,6 @@
                                         <span class="icon-bar"></span>
                                     </button>
                                 </div>
-                                <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li><a class="active" href="{% url 'center:homepage' %}">主页</a></li>
@@ -199,7 +48,6 @@
                                                 </li>
                                                 <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
                                                 </li>
-                                                {#                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>#}
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>

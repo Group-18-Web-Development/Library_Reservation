@@ -6,15 +6,11 @@ from django.http import HttpResponse
 
 
 def homepage(request):
-    # try:
-    #     user_id = request.session.get('user_id')*1
-    # except Exception:
-    #     return redirect(reverse('account:user_login'))
-
     return render(request, 'main/homepage.html')
 
 
 def personal_center(request):
+    # 判断用户是否已经登录
     try:
         user_id = request.session.get('user_id')*1
     except Exception:
@@ -22,8 +18,6 @@ def personal_center(request):
 
     user_id = request.session.get('user_id')
     userprof = UserProf.objects.get(user_id=user_id)
-
-    # icon = userprof.icon
 
     if request.method == 'POST':
         icon = request.FILES.get('icon')
@@ -38,8 +32,6 @@ def personal_center(request):
         'mailbox': userprof.user.email,
         'introduction': userprof.introduction,
         'record_id_new': None,  # 待完成
-        # 记录id（待完成）
         'credit': userprof.credit
-        # 不良记录id（待完成）
     }
     return render(request, 'main/personal_center.html', context=data)

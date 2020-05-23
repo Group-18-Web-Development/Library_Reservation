@@ -25,12 +25,6 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    {#                    <div class="w3-header-top">#}
-                    {#                        <ul>#}
-                    {#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
-                    {#                            </li>#}
-                    {#                        </ul>#}
-                    {#                    </div>#}
                     <div class="w3-header-bottom">
                         <div class="top-nav">
                             <nav class="navbar navbar-default">
@@ -43,7 +37,6 @@
                                         <span class="icon-bar"></span>
                                     </button>
                                 </div>
-                                <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li><a href="{% url 'center:homepage' %}">主页</a></li>
@@ -56,7 +49,6 @@
                                                 </li>
                                                 <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
                                                 </li>
-                                                {#                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>#}
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>
@@ -95,9 +87,14 @@
                     <td><span>{{ record.time_choice }}</span></td>
                     <td><span>{{ record.is_quiet }}</span></td>
                     <td><span>{{ record.seat_id }}</span></td>
-                    <td>
-                        <a class="CancelBooking"><button class="button-default link">取消预约</button></a>
-                    </td>
+                    <td><a href="{% url 'book:book_cancel' reservation_id=record.id %}">取消预约</a></td>
+
+                    {#                    待修改            #}
+                    {#                    <td>#}
+                    {#                        <a class="CancelBooking">#}
+                    {#                            <button class="button-default link">取消预约</button>#}
+                    {#                        </a>#}
+                    {#                    </td>#}
                 </tr>
             {% endfor %}
             {% for record in records_is_delete %}

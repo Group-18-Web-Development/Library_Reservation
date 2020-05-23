@@ -25,12 +25,6 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    {#                    <div class="w3-header-top">#}
-                    {#                        <ul>#}
-                    {#                            <li><i class="fa fa-envelope" aria-hidden="true"></i> : <a href="mailto:info@example.com">lzh1633856298@gmail.com</a>#}
-                    {#                            </li>#}
-                    {#                        </ul>#}
-                    {#                    </div>#}
                     <div class="w3-header-bottom">
                         <div class="top-nav">
                             <nav class="navbar navbar-default">
@@ -43,7 +37,6 @@
                                         <span class="icon-bar"></span>
                                     </button>
                                 </div>
-                                <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li><a href="{% url 'center:homepage' %}">主页</a></li>
@@ -52,9 +45,10 @@
                                                         data-toggle="dropdown" role="button" aria-haspopup="true"
                                                         aria-expanded="false">预约<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a></li>
-                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a></li>
-{#                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_cancel' %}">取消预约</a></li>#}
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_seat' %}">座位预约</a>
+                                                </li>
+                                                <li><a class="hvr-bounce-to-bottom" href="{% url 'book:book_record' %}">预约记录</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href={% url 'center:personal_center' %}>个人中心</a></li>
@@ -98,19 +92,28 @@
                             function reset_time() {
                                 $("#time_choice").empty();
                                 var ById = document.getElementById("day");
-                                var day=ById.options[ById.selectedIndex].text;
+                                var day = ById.options[ById.selectedIndex].text;
                                 if (day == "{{ today }}") {
-                                    if ({{ present_hour }} < 8) document.getElementById("time_choice").add(new Option("8:00-11:00"));
-                                    if ({{ present_hour }} < 13) document.getElementById("time_choice").add(new Option("13:00-17:00"));
-                                    if ({{ present_hour }} < 18) document.getElementById("time_choice").add(new Option("18:00-21:00"));
-                                }
-                                else {
+                                    if ({{ present_hour }} <
+                                    8
+                                )
+                                    document.getElementById("time_choice").add(new Option("8:00-11:00"));
+                                    if ({{ present_hour }} <
+                                    13
+                                )
+                                    document.getElementById("time_choice").add(new Option("13:00-17:00"));
+                                    if ({{ present_hour }} <
+                                    18
+                                )
+                                    document.getElementById("time_choice").add(new Option("18:00-21:00"));
+                                } else {
                                     document.getElementById("time_choice").add(new Option("8:00-11:00"));
                                     document.getElementById("time_choice").add(new Option("13:00-17:00"));
                                     document.getElementById("time_choice").add(new Option("18:00-21:00"));
                                 }
                             }
-                            if(document.attachEvent)
+
+                            if (document.attachEvent)
                                 window.attachEvent("onload", reset_time);
                             else
                                 window.addEventListener('load', reset_time, false);
@@ -232,9 +235,14 @@
                         </span>
                     </td>
                     <td><span>{{ seat_q.table_position_quiet }}</span></td>
-                    <td><span>
-                        <a class="QuietTable"><button class="button-default link">预约</button></a>
-                    </span></td>
+                    <td><span><a
+                            href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span>
+                    </td>
+
+                    {#                    待修改            #}
+                    {#                    <td><span>#}
+                    {#                        <a class="QuietTable"><button class="button-default link">预约</button></a>#}
+                    {#                    </span></td>#}
                 </tr>
             {% endfor %}
             {% for seat_n in seats_n %}
@@ -247,9 +255,15 @@
                     <td><span>{{ seat_n.table_type }}</span></td>
                     <td><span>不适用</span></td>
                     <td><span>{{ seat_n.table_position_noisy }}</span></td>
-                    <td><span>
-                        <a class="NoisyTable"><button class="button-default link">预约</button></a>
-                    </span></td>
+                    <td><span><a
+                            href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a></span>
+                    </td>
+
+                    {#                    待修改            #}
+                    {#                    <td><span>#}
+                    {#                        <a class="NoisyTable"><button class="button-default link">预约</button></a>#}
+                    {#                    </span></td>#}
+
                 </tr>
             {% endfor %}
             </tbody>

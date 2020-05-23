@@ -19,5 +19,6 @@ class HtmlTestCase(TestCase):
         expected_html = render_to_string('main/homepage.html')  # 模板函数返回的页面
         self.assertEqual(response.content.decode(), expected_html)
 
+
 if __name__ == '__main__':
     TestCase.main()

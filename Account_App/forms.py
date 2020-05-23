@@ -1,9 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProf
+
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(label="password", widget=forms.PasswordInput)
@@ -19,8 +22,8 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError("passwords do not match.")
         return cd['password2']
 
+
 class UserProfForm(forms.ModelForm):
     class Meta:
         model = UserProf
         fields = ("phone_number",)
-

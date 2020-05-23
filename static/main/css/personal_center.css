@@ -1,0 +1,12 @@
+.nav-pills {
+    width: 50px;
+}
+
+.nav-pills.affix-top {
+    top: 10px;
+    position: absolute;
+}
+
+.nav-pills.affix {
+    top: 100px;
+}

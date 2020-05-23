@@ -11,6 +11,7 @@ from Book_App.models import Seat, Reservation
 
 
 def book_seat(request):
+    # 判断用户是否已经登录
     try:
         user_id = request.session.get('user_id') * 1
     except Exception:
@@ -216,6 +217,7 @@ def book_seat(request):
 
 # 将用户选择预约的table id与用户绑定，存至reservation数据库
 def book_success(request, table_id, time_id, date):
+    # 判断用户是否已经登录
     try:
         user_id = request.session.get('user_id') * 1
     except Exception:
@@ -252,6 +254,7 @@ def book_success(request, table_id, time_id, date):
 
 # 预约记录展示
 def book_record(request):
+    # 判断用户是否已经登录
     try:
         user_id = request.session.get('user_id') * 1
     except Exception:
@@ -307,6 +310,7 @@ def book_record(request):
 
 
 def book_cancel(request, reservation_id):
+    # 判断用户是否已经登录
     try:
         user_id = request.session.get('user_id') * 1
     except Exception:

@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# 用户模型初步创建
-
 
 class UserProf(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,7 +14,6 @@ class UserProf(models.Model):
     record_id = models.TextField(editable=False)  # 预约记录
 
     class Meta:
-
         db_table = 'userprof'
 
     def __str__(self):
