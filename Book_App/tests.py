@@ -1,12 +1,8 @@
 from django.test import TestCase
 from Book_App.models import Seat
 from Book_App.models import Reservation
-from Book_App.views import book_seat
 from Account_App.models import UserProf
 from django.contrib.auth.models import User
-from django.urls import reverse
-from django.test import Client
-from django.http import HttpRequest
 
 
 # Seat类测试
@@ -54,9 +50,6 @@ class ReservationTestCase(TestCase):
             (3, "18:00-21:00"),
         ))
         self.assertEqual(result.time_id, 1)
-
-
-
 
 
 if __name__ == '__main__':
