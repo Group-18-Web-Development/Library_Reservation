@@ -17,7 +17,7 @@ function Confirm(title, msg, $true, $false, $link) {
                 "</div>";
          $('body').prepend($content);
       $('.doAction').click(function () {
-        window.open($link, "_blank");
+        window.open($link, "_self");
         $(this).parents('.dialog-ovelay').fadeOut(500, function () {
           $(this).remove();
         });
@@ -29,5 +29,6 @@ $('.cancelAction, .fa-close').click(function () {
       });
    }
 $('a.CancelBooking').click(function () {
-        Confirm('你在取消预约', '你确定吗？', 'Yes', 'Cancel',href="{% url 'book:book_cancel' reservation_id=record.id %}");
+        var url = $("#UrlC").attr("data-url");
+        Confirm('你在取消预约', '你确定吗？', 'Yes', 'Cancel',url);
     });

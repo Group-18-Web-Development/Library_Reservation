@@ -35,7 +35,7 @@ function Confirm(title, msg, $true, $false, $link) {
                 "</div>";
          $('body').prepend($content);
       $('.doAction').click(function () {
-        window.open($link, "_blank");
+          window.open($link, '_self');
         $(this).parents('.dialog-ovelay').fadeOut(500, function () {
           $(this).remove();
         });
@@ -47,8 +47,10 @@ $('.cancelAction, .fa-close').click(function () {
       });
    }
 $('a.QuietTable').click(function () {
-        Confirm('你在预约安静区的座位', '你确定吗？', 'Yes', 'Cancel',href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}");
+        var url1 = $("#UrlQ").attr("data-url");
+        Confirm('你在预约安静区的座位', '你确定吗？', 'Yes', 'Cancel', url1);
     });
 $('a.NoisyTable').click(function () {
-        Confirm('你在预约非安静区的座位', '你确定吗？', 'Yes', 'Cancel', href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}");
+        var url2 = $("#UrlN").attr("data-url");
+        Confirm('你在预约非安静区的座位', '你确定吗？', 'Yes', 'Cancel', url2);
     });

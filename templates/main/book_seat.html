@@ -10,6 +10,7 @@
 {% block ext_js %}
     {{ block.super }}
     <script src="../../static/main/js/book_seat.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 {% endblock %}
 
 
@@ -235,14 +236,12 @@
                         </span>
                     </td>
                     <td><span>{{ seat_q.table_position_quiet }}</span></td>
-                    <td><span><a
-                            href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span>
-                    </td>
-
-                    {#                    待修改            #}
-                    {#                    <td><span>#}
-                    {#                        <a class="QuietTable"><button class="button-default link">预约</button></a>#}
-                    {#                    </span></td>#}
+                    {# <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span></td> #}
+                    {#                    修改了            #}
+                    <td><span>
+                        <a class="QuietTable"><button class="button-default link">预约</button></a>
+                        <input type="hidden" id="UrlQ" data-url="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}" />
+                    </span></td>
                 </tr>
             {% endfor %}
             {% for seat_n in seats_n %}
@@ -255,14 +254,12 @@
                     <td><span>{{ seat_n.table_type }}</span></td>
                     <td><span>不适用</span></td>
                     <td><span>{{ seat_n.table_position_noisy }}</span></td>
-                    <td><span><a
-                            href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a></span>
-                    </td>
-
-                    {#                    待修改            #}
-                    {#                    <td><span>#}
-                    {#                        <a class="NoisyTable"><button class="button-default link">预约</button></a>#}
-                    {#                    </span></td>#}
+                    {# <td><span><a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a></span></td> #}
+                    {#                    修改了            #}
+                    <td><span>
+                        <a class="NoisyTable"><button class="button-default link">预约</button></a>
+                        <input type="hidden" id="UrlN" data-url="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}" />
+                    </span></td>
 
                 </tr>
             {% endfor %}
