@@ -19,16 +19,16 @@
     <br>
     <br>
     <br>
-    <h1>Register</h1>
-
     <div class="content" align="center">
         <br>
+        <h1>Register</h1>
         <img border="0" src="/static/image/default_icon.bmp" alt="default_image" width="50" height="50">
         <br>
         <br>
         <p class="ex1" style="color:#C8C8C8">-If you have already registered, here
             <strong><a href="{% url 'account:user_login' %}">Login</a></strong>.-
         </p>
+        <br>
         <form class="form-horizontal" action="." method="post">{% csrf_token %}
             <div class="form-group">
                 <label class="col-md-5 control-label">Username</label>
