@@ -3,10 +3,32 @@
 
 {% block title %}{% trans "Password recovery" %}{% endblock %}
 
+{% block ext_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/password_reset/css/recovery.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% endblock %}
+
 {% block content %}
-	<form method="post" action="{{ url }}">
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="content" align="center">
+    <br><br>
+        <img border="0" src="/static/image/key.png" alt="default_image" width="50" height="50">
+        <br><br><br>
+
+
+	<form style="text-align:center" method="post" action="{{ url }}">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<p><input type="submit" value="{% trans "Recover my password" %}"></p>
+		<p style="text-align:center" >
+            <input class="btn btn-primary" style="background-color: #203643;border-color: #cccccc" type="submit" value="确认">
+        </p>
+
 	</form>
+    <br>
+    </div>
 {% endblock %}
