@@ -134,7 +134,8 @@
                     {#    安静区    #}
                     <div id="quietmore" style="display: none;">
                         {#    选择floor    #}
-                        <legend>安静区-请选择楼层</legend>
+                        <div style="display: inline-block; float: left; width: 25%">
+                            <legend>安静区-请选择楼层</legend>
                         <label>
                             <select name="floor_q">
                                 <option>all</option>
@@ -144,8 +145,8 @@
                                 <option>F4</option>
                                 <option>F5</option>
                             </select>
-                        </label>
-                        <legend>安静区-请选择区域</legend>
+                        </label></div>
+                        <div style="display: inline-block; float: left; width: 25%"><legend>安静区-请选择区域</legend>
                         <label>
                             <select name="area_q">
                                 <option>all</option>
@@ -153,8 +154,8 @@
                                 <option>B</option>
                                 <option>C</option>
                             </select>
-                        </label>
-                        <legend>安静区-请选择桌子类型</legend>
+                        </label></div>
+                        <div style="display: inline-block; float: left; width: 25%"><legend>安静区-请选择桌子类型</legend>
                         <label>
                             <select name="table_type_q">
                                 <option>all</option>
@@ -162,21 +163,21 @@
                                 <option>双人桌</option>
                                 <option>四人桌</option>
                             </select>
-                        </label>
-                        <legend>安静区-是否需要电源插座</legend>
+                        </label></div>
+                        <div style="display: inline-block; float: left; width: 25%"><legend>安静区-是否需要电源插座</legend>
                         <label>
                             <select name="has_power_q">
                                 <option>all</option>
                                 <option>yes</option>
                                 <option>no</option>
                             </select>
-                        </label>
+                        </label></div>
                     </div>
 
                     {#    非安静区    #}
                     <div id="noisymore" style="display: none;">
                         {#    选择floor    #}
-                        <legend>非安静区-请选择楼层</legend>
+                        <div style="display: inline-block; float: left; width: 50%"><legend>非安静区-请选择楼层</legend>
                         <label>
                             <select name="floor_n">
                                 <option>all</option>
@@ -186,8 +187,8 @@
                                 <option>F4</option>
                                 <option>F5</option>
                             </select>
-                        </label>
-                        <legend>非安静区-请选择桌子类型</legend>
+                        </label></div>
+                        <div style="display: inline-block; float: left; width: 50%"><legend>非安静区-请选择桌子类型</legend>
                         <label>
                             <select name="table_type_n">
                                 <option>all</option>
@@ -195,9 +196,9 @@
                                 <option>双人桌</option>
                                 <option>四人桌</option>
                             </select>
-                        </label>
+                        </label></div>
                     </div>
-                    <p><input type="submit" value="Submit"></p>
+                    <p style="width: 100%; text-align: center"><input type="submit" value="查询"></p>
                 </fieldset>
             </form>
         </div>
