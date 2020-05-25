@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from Account_App.models import UserProf
-from django.http import HttpResponse
 
 
 def homepage(request):
