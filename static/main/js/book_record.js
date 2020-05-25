@@ -29,6 +29,6 @@ $('.cancelAction, .fa-close').click(function () {
       });
    }
 $('a.CancelBooking').click(function () {
-        var url = $("#UrlC").attr("data-url");
+        var url = $(this).attr("data-url");
         Confirm('你在取消预约', '你确定吗？', 'Yes', 'Cancel',url);
     });

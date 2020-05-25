@@ -251,8 +251,7 @@
                     {# <td><span><a href="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}">预约</a></span></td> #}
                     {#                    修改了            #}
                     <td><span>
-                        <a class="QuietTable"><button class="button-default link">预约</button></a>
-                        <input type="hidden" id="UrlQ" data-url="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}" />
+                        <a class="QuietTable" data-url="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}"><button class="button-default link">预约</button></a>
                     </span></td>
                 </tr>
             {% endfor %}
@@ -269,8 +268,7 @@
                     {# <td><span><a href="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}">预约</a></span></td> #}
                     {#                    修改了            #}
                     <td><span>
-                        <a class="NoisyTable"><button class="button-default link">预约</button></a>
-                        <input type="hidden" id="UrlN" data-url="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}" />
+                        <a class="NoisyTable" data-url="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}"><button class="button-default link">预约</button></a>
                     </span></td>
 
                 </tr>

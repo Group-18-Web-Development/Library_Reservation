@@ -92,8 +92,7 @@
 
                     {#                    修改了            #}
                     <td>
-                        <a class="CancelBooking"><button class="button-default link">取消预约</button></a>
-                        <input type="hidden" id="UrlC" data-url="{% url 'book:book_cancel' reservation_id=record.id %}" />
+                        <a class="CancelBooking" data-url="{% url 'book:book_cancel' reservation_id=record.id %}"><button class="button-default link">取消预约</button></a>
                     </td>
                 </tr>
             {% endfor %}

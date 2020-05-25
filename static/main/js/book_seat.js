@@ -47,10 +47,10 @@ $('.cancelAction, .fa-close').click(function () {
       });
    }
 $('a.QuietTable').click(function () {
-        var url1 = $("#UrlQ").attr("data-url");
+        var url1 = $(this).attr("data-url");
         Confirm('你在预约安静区的座位', '你确定吗？', 'Yes', 'Cancel', url1);
     });
 $('a.NoisyTable').click(function () {
-        var url2 = $("#UrlN").attr("data-url");
+        var url2 = $(this).attr("data-url");
         Confirm('你在预约非安静区的座位', '你确定吗？', 'Yes', 'Cancel', url2);
     });
