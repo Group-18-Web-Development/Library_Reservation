@@ -30,5 +30,5 @@ $('.cancelAction, .fa-close').click(function () {
    }
 $('a.CancelBooking').click(function () {
         var url = $(this).attr("data-url");
-        Confirm('你在取消预约', '你确定吗？', 'Yes', 'Cancel',url);
+        Confirm('你在取消预约', '取消预约会被扣除一定的信誉分，你确定吗？', 'Yes', 'Cancel',url);
     });
