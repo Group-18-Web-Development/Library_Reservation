@@ -51,6 +51,20 @@ def book_seat(request):
         result = reservation_search_id(day, time_choice)
         length = len(result)
 
+        time_id = 0
+        time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]
+        if time_choice == time_choices[0]:
+            time_id = 1
+        elif time_choice == time_choices[1]:
+            time_id = 2
+        else:
+            time_id = 3
+
+        # 预约规则函数，若不符合规则，则无法预约
+        user_id = request.session.get('user_id')
+        userprof = UserProf.objects.get(user_id=user_id)
+        msg = book_rule(userprof, time_id, day)
+
         # 随机选座处理
         if zone == 'auto_book':
             seats = Seat.objects.all()
@@ -63,18 +77,12 @@ def book_seat(request):
             user_id = request.session.get('user_id')
             userprof = UserProf.objects.get(user_id=user_id)
 
-            time_choices = ["8:00-11:00", "13:00-17:00", "18:00-21:00"]
-            if time_choice == time_choices[0]:
-                reservation.time_id = 1
-            elif time_choice == time_choices[1]:
-                reservation.time_id = 2
-            else:
-                reservation.time_id = 3
+            reservation.time_id = time_id
 
             # 预约规则函数，若不符合规则，则无法预约
-            msg = book_rule(userprof, reservation.time_id, day)
-            if msg != "OK":
-                return HttpResponse(msg)
+            msg1 = book_rule(userprof, reservation.time_id, day)
+            if msg1 != "OK":
+                return HttpResponse(msg1)
 
             seat = choice(seats)
             reservation.seat_id = seat.id
@@ -107,6 +115,7 @@ def book_seat(request):
                 'day': day,
                 'present_hour': present_hour,
                 'time_choice': time_choice,
+                'msg': msg,
             }
             return render(request, 'main/book_seat.html', context=data)
 
@@ -150,11 +159,6 @@ def book_seat(request):
             for i in range(length):
                 seats_q = seats_q.exclude(id=result[i])
 
-            if seats_q.exists():
-                msg = "有剩余座位"
-            else:
-                msg = "无剩余座位"
-
             data = {
                 'days': days,
                 'today': today,
@@ -197,11 +201,6 @@ def book_seat(request):
             for i in range(length):
                 seats_n = seats_n.exclude(id=result[i])
 
-            if seats_n.exists():
-                msg = "有剩余座位"
-            else:
-                msg = "无剩余座位"
-
             data = {
                 'days': days,
                 'today': today,
@@ -234,11 +233,6 @@ def book_success(request, table_id, time_id, date):
         reservation.time_id = 2
     if time_id == time_choices[2]:
         reservation.time_id = 3
-
-    # 预约规则函数，若不符合规则，则无法预约
-    msg = book_rule(userprof, reservation.time_id, date)
-    if msg != "OK":
-        return HttpResponse(msg)
 
     reservation.seat_id = table_id
 

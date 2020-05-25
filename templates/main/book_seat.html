@@ -123,7 +123,8 @@
 
                     {#    选择区域    #}
                     <legend>请选择 安静区/非安静区</legend>
-                    <label><input required type="radio" id="zone" name="zone" value="quiet_or_noisy" aria-required="true"
+                    <label><input required type="radio" id="zone" name="zone" value="quiet_or_noisy"
+                                  aria-required="true"
                                   onChange="Selected(this)"> 安静区/非安静区 </label>
                     <label><input required type="radio" id="zone" name="zone" value="quiet" aria-required="true"
                                   onChange="Selected(this)"> 安静区 </label>
@@ -248,9 +249,31 @@
                         </span>
                     </td>
                     <td><span>{{ seat_q.table_position_quiet }}</span></td>
-                    <td><span>
-                        <a class="QuietTable" data-url="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}"><button class="button-default link">预约</button></a>
+                    {% if msg == 'OK' %}
+                        <td><span>
+                        <a class="QuietTable"
+                           data-url="{% url 'book:book_success' table_id=seat_q.id time_id=time_choice date=day %}"><button
+                                class="button-default link">预约</button></a>
                     </span></td>
+                    {% elif msg == '您的信誉分过低，无法预约，可联系管理员提高信誉分！' %}
+                        <td><span>
+                        <a class="QuietTable1"
+                           data-url="{% url 'book:book_seat' %}"><button
+                                class="button-default link">预约</button></a>
+                    </span></td>
+                    {% elif msg == '在该时间段已有预约，您不能重复预约！' %}
+                        <td><span>
+                        <a class="QuietTable2"
+                           data-url="{% url 'book:book_seat' %}"><button
+                                class="button-default link">预约</button></a>
+                    </span></td>
+                    {% elif msg == '您的当前预约次数已达上限，无法继续预约！' %}
+                        <td><span>
+                        <a class="QuietTable3"
+                           data-url="{% url 'book:book_seat' %}"><button
+                                class="button-default link">预约</button></a>
+                    </span></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             {% for seat_n in seats_n %}
@@ -263,10 +286,31 @@
                     <td><span>{{ seat_n.table_type }}</span></td>
                     <td><span>不适用</span></td>
                     <td><span>{{ seat_n.table_position_noisy }}</span></td>
-                    <td><span>
-                        <a class="NoisyTable" data-url="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}"><button class="button-default link">预约</button></a>
+                    {% if msg == 'OK' %}
+                        <td><span>
+                       <a class="NoisyTable"
+                          data-url="{% url 'book:book_success' table_id=seat_n.id time_id=time_choice date=day %}"><button
+                               class="button-default link">预约</button></a>
                     </span></td>
-
+                    {% elif msg == '您的信誉分过低，无法预约，可联系管理员提高信誉分！' %}
+                        <td><span>
+                       <a class="NoisyTable1"
+                          data-url="{% url 'book:book_seat' %}"><button
+                               class="button-default link">预约</button></a>
+                    </span></td>
+                    {% elif msg == '在该时间段已有预约，您不能重复预约！' %}
+                        <td><span>
+                        <a class="NoisyTable2"
+                           data-url="{% url 'book:book_seat' %}"><button
+                                class="button-default link">预约</button></a>
+                    </span></td>
+                    {% elif msg == '您的当前预约次数已达上限，无法继续预约！' %}
+                        <td><span>
+                       <a class="NoisyTable3"
+                          data-url="{% url 'book:book_seat' %}"><button
+                               class="button-default link">预约</button></a>
+                    </span></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
