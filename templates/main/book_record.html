@@ -88,9 +88,6 @@
                     <td><span>{{ record.time_choice }}</span></td>
                     <td><span>{{ record.is_quiet }}</span></td>
                     <td><span>{{ record.seat_id }}</span></td>
-                    {# <td><a href="{% url 'book:book_cancel' reservation_id=record.id %}">取消预约</a></td> #}
-
-                    {#                    修改了            #}
                     <td>
                         <a class="CancelBooking"><button class="button-default link">取消预约</button></a>
                         <input type="hidden" id="UrlC" data-url="{% url 'book:book_cancel' reservation_id=record.id %}" />

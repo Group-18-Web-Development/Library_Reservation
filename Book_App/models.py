@@ -1,5 +1,4 @@
 from django.db import models
-import datetime
 
 from Account_App.models import UserProf
 
