@@ -95,18 +95,9 @@
                                 var ById = document.getElementById("day");
                                 var day = ById.options[ById.selectedIndex].text;
                                 if (day == "{{ today }}") {
-                                    if ({{ present_hour }} <
-                                    8
-                                )
-                                    document.getElementById("time_choice").add(new Option("8:00-11:00"));
-                                    if ({{ present_hour }} <
-                                    13
-                                )
-                                    document.getElementById("time_choice").add(new Option("13:00-17:00"));
-                                    if ({{ present_hour }} <
-                                    18
-                                )
-                                    document.getElementById("time_choice").add(new Option("18:00-21:00"));
+                                    if ({{ present_hour }} < 8) document.getElementById("time_choice").add(new Option("8:00-11:00"));
+                                    if ({{ present_hour }} < 13) document.getElementById("time_choice").add(new Option("13:00-17:00"));
+                                    if ({{ present_hour }} < 18) document.getElementById("time_choice").add(new Option("18:00-21:00"));
                                 } else {
                                     document.getElementById("time_choice").add(new Option("8:00-11:00"));
                                     document.getElementById("time_choice").add(new Option("13:00-17:00"));
@@ -220,15 +211,15 @@
     <div class="text-center">
         <table class="table table-bordered" align="center" style="max-width: 800px;">
             <thead>
-            <th width="15%" style="text-align:center">日期</th>
-            <th width="15%" style="text-align:center">时间</th>
-            <th width="15%" style="text-align:center">是否安静区</th>
-            <th width="10%" style="text-align:center">楼层</th>
-            <th wdith="10%" style="text-align:center">区域</th>
-            <th wdith="10%" style="text-align:center">桌子类型</th>
-            <th wdith="10%" style="text-align:center">有无电源</th>
-            <th wdith="10%" style="text-align:center">位置</th>
-            <th wdith="10%" style="text-align:center">预约</th>
+            <th width="14%" style="text-align:center">日期</th>
+            <th width="14%" style="text-align:center">时间</th>
+            <th width="13%" style="text-align:center">是否安静区</th>
+            <th width="7%" style="text-align:center">楼层</th>
+            <th width="9%" style="text-align:center">区域</th>
+            <th width="11%" style="text-align:center">桌子类型</th>
+            <th width="11%" style="text-align:center">有无电源</th>
+            <th width="11%" style="text-align:center">位置</th>
+            <th width="10%" style="text-align:center">预约</th>
             </thead>
             <tbody>
             {% for seat_q in seats_q %}
