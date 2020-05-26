@@ -1,11 +1,11 @@
 .content
 {
     margin: 10px 550px 100px;
-    <!--box-shadow: 10px 10px 5px #DDEAF6;-->
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
     background-color: white;
+    box-shadow: 10px 10px 5px #DDEAF6;
 }
 
 h1
@@ -19,13 +19,4 @@ h1
 p.ex1
 {
 	font:italic bold 12px/30px Georgia,serif;
-}
-
-body {
-    background-image: url("/static/image/book.bmp");
-    background-position: center center;
-    background-repeat: repeat-y;
-    background-attachment: fixed;
-    background-size:30%;
-
 }
