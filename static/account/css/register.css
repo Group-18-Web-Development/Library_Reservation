@@ -5,7 +5,7 @@
     -moz-border-radius: 30px;
     border-radius: 30px;
     background-color: white;
-    box-shadow: 10px 10px 5px #DDEAF6;
+    box-shadow: 10px 10px 5px #203643;
 }
 
 h1
@@ -19,4 +19,12 @@ h1
 p.ex1
 {
 	font:italic bold 12px/30px Georgia,serif;
+}
+body {
+    background-image: url("/static/image/background.jpg");
+    background-position: center center;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size:100%;
+
 }
