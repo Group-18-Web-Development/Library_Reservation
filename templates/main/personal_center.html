@@ -66,54 +66,103 @@
 
 
 {% block content %}
-    <div class="container">
+<script src="/static/js/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//选项卡切换
+		$('.category ul li').click(function(){
+			indexC = $(this).index();
+			$(this).addClass('active').siblings().removeClass('active');
+			$('.cont').eq(indexC).addClass('active').siblings().removeClass('active');
+		})
+	})
+</script>
 
 
-        <div class="row">
-            <div class="col-xs-3" id="myScrollspy">
-                <ul id="myAffix" class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="150">
-                    <li class="active"><a href="#section-1">基本信息</a></li>
-                    <li><a href="#section-3">不良记录</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-9">
-                <h2 id="section-1">基本信息</h2>
-                <ol style="list-style: none">
-                    <form method="post" enctype="multipart/form-data" action="{% url 'center:personal_center' %}">
-                        {% csrf_token %}
-                        <li>
-                            <div style="width:150px;height:150px;border-radius:75px;overflow:hidden;float:right;margin-right:170px;">
-                                <img src="{{ icon }} " width="150px" height="150px">
+    <div class="panel panel-default" style="width:100%;">
+        <div class="background0" style="height:400px;width:100%;list-style: none">
+            <form method="post" enctype="multipart/form-data" action="{% url 'center:personal_center' %}">
+                {% csrf_token %}
+                    <li>
+                        <div style="width:20%;float:left;">
+                            <div style="width:100px;height:100px;border-radius:75px;overflow:hidden;margin-left:150px;margin-top:150px;margin-bottom:80px;">
+                                <img src="{{ icon }} " width="100px" height="100px">
                             </div>
+                        </div>
+                        <div style="width:80%;float:left;margin-top:125px;">
+                            <h2>{{ name }}</h2>
                             <div class="form-group">
-                                <input style="float:right;clear:right;left-padding:20px;" name="icon" type="file"
-                                       id="icon_input">
+                                <input required style="float:left;clear:left;" name="icon" type="file" id="icon_input">
                             </div>
-                            <br>
-                            <button style="float:right;width:100px;height:30px;left-padding:20px;clear:right;margin-right:200px"
-                                    type="submit" class="btn btn-success btn-block">上传头像
+                            <button style="float:left;width:100px;height:30px;clear:left;margin-top:5px;" type="submit" class="btn btn-success btn-block">上传头像
                             </button>
-                        </li>
-                    </form>
-
-                    <br>
-                    <li>姓名：{{ name }}</li>
-                    <li>学号：{{ student_number }}</li>
-                    <li>电话：{{ phone_number }}</li>
-                    <li>邮箱：{{ mailbox }}</li>
-                    <br>
-                    <br>
-                </ol>
-
-                <br>
-                <hr>
-
-                <h2 id="section-3">不良记录</h2>
-                <h4>信誉积分：{{ credit }}分</h4>
-
-                <hr>
-            </div>
+                        </div>
+                    </li>
+            </form>
         </div>
     </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+	    <div class="category">
+            <ul>
+                <li class="active">基本信息</li>
+                <li>信誉积分</li>
+                <li>密码重置</li>
+            </ul>
+        </div>
+        <div class="cont active">
+            <ul>
+                <li>
+                    <div class="cont_main">
+                        <br>
+                        <br>
+                        <h3 class="title">姓名</h3>
+                        <p class="desc">{{ name }}</p>
+                        <h3 class="title">学号</h3>
+                        <p class="desc">{{ student_number }}</p>
+                        <h3 class="title">电话</h3>
+                        <p class="desc">{{ phone_number }}</p>
+                        <h3 class="title">邮箱</h3>
+                        <p class="desc">{{ mailbox }}</p>
+                        <br>
+                        <br>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cont">
+            <ul>
+                <li>
+                    <div class="cont_main">
+                        <br>
+                        <br>
+                        <h3 class="title">信誉积分</h3>
+                        <p class="desc">{{ credit }}分</p>
+                        <br>
+                        <br>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cont">
+            <ul>
+                <li>
+                    <br>
+                    <br>
+                    <div class="cont_main">
+                        <h3 class="title">重置密码</h3>
+                        <a class="desc" href='{% url "password_reset_recover" %}'>单击此处重置密码</a>
+                    </div>
+                    <br>
+                    <br>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <br>
 
 {% endblock %}
