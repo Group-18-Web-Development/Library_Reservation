@@ -15,6 +15,7 @@
 
 .carousel-caption {
     z-index: 10;
+    bottom: 120px;
 }
 
 .carousel-caption p {
