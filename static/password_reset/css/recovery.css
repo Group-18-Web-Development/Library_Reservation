@@ -1,7 +1,7 @@
 .content
 {
     margin: 10px 550px 100px;
-    box-shadow: 10px 10px 5px #203643;
+    box-shadow: 5px 5px 2px rgba(32, 54, 67, 0.35);
     -webkit-border-radius: 30px;
     -moz-border-radius: 10px;
     border-radius: 30px;
@@ -9,10 +9,10 @@
 }
 
 body {
-    background-image: url("/static/image/background.jpg");
+    background-image: url("/static/image/background_l.jpg");
     background-position: center center;
     background-repeat: repeat-y;
     background-attachment: fixed;
-    /*background-size:100%;*/
+    background-size:100%;
 
 }

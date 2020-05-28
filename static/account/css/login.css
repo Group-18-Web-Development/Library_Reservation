@@ -5,7 +5,7 @@
     -moz-border-radius: 30px;
     border-radius: 30px;
     background-color: white;
-    box-shadow: 10px 10px 5px #203643;
+    box-shadow: 5px 5px 2px rgba(32, 54, 67, 0.35);
 
 }
 
@@ -35,10 +35,9 @@ h5
     font:italic bold 12px/30px Georgia,serif;
 }
 body {
-    background-image: url("/static/image/background.jpg");
+    background-image: url("/static/image/background_l.jpg");
     background-position: center center;
     background-repeat: repeat-y;
     background-attachment: fixed;
-    /*background-size:100%;*/
-
+    background-size:100%;
 }
