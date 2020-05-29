@@ -88,7 +88,9 @@
                     <label>
                         <select id="day" name="day" onchange="reset_time()">
                             {% for day in days %}
-                                <option>{{ day }}</option>
+                                {% if day != today or present_hour <= 18 %}
+                                    <option>{{ day }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <select id="time_choice" name="time_choice"></select>
