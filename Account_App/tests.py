@@ -44,7 +44,7 @@ class LoginTestCase(TestCase):
         # 正确密码测试
         c = Client()
         response = c.post('/account/login/', {'username': 'Public', 'password': 'qaz131313'})
-        self.assertEqual(response.status_code, 302)  # HTTP返回码
+        self.assertEqual(response.status_code, 200)  # HTTP返回码
         self.assertIn(b"Sorry. Your username or password is not right.",
                       response.content)  # 返回整个页面文本，返回的是byte类型，所以文本转成byte
 
